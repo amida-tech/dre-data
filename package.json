@@ -1,0 +1,50 @@
+{
+  "name": "dre-data",
+  "version": "0.0.1",
+  "description": "FHIR record merge",
+  "main": "./index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Mike Hiner <mike@amida-tech.com>",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "dependencies": {
+    "lodash": "~3.10.0",
+    "deep-diff": "~0.3.2",
+    "fhir.js": ">= 0.0.7"
+  },
+  "devDependencies": {
+    "brfs": "~1.4.0",
+    "chai": "~2.3.0",
+    "coveralls": "~2.11.2",
+    "grunt": "~0.4.5",
+    "grunt-browserify": "~3.7.0",
+    "grunt-contrib-connect": "~0.10.1",
+    "grunt-contrib-jshint": "~0.11.2",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-coveralls": "~1.0.0",
+    "grunt-istanbul-coverage": "~0.1.1",
+    "grunt-jsbeautifier": "~0.2.10",
+    "grunt-mocha-phantomjs": "~0.6.1",
+    "grunt-mocha-test": "~0.12.7",
+    "mocha": "~2.2.4",
+    "mocha-lcov-reporter": "0.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/amida-tech/dre-data.git"
+  },
+  "keywords": [
+    "fhir"
+  ],
+  "bugs": {
+    "url": "https://github.com/amida-tech/dre-data/issues"
+  },
+  "homepage": "https://github.com/amida-tech/dre-data"
+}

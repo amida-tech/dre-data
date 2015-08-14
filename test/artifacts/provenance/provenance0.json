@@ -1,0 +1,24 @@
+{ 
+		"resourceType":"Provenance",
+		"target":[
+			{
+				"reference":"Patient/1/_history/1"
+			}
+		],
+		"agent": [
+		  {
+			"role":{
+				"system": "http://hl7.org/fhir/provenance-participant-role",
+				"code": "derivation"
+			},
+			"type":{
+		        "system": "http://hl7.org/fhir/provenance-participant-type",
+		        "code": "device"
+			},
+		      "referenceUri": "http://amida-tech.com/fhir/dre",
+		      "display": "Data Reconciliation Engine"
+			
+		  }
+		],
+		"reason":"update from DRE"
+}
