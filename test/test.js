@@ -5,6 +5,10 @@ var diff = require('deep-diff').diff;
 var factory = require('../lib/client');
 
 describe('Merge', function() {
+  
+  //id of the basic insert, which is in turn used for the basic search
+  var basePatientId;
+  
   describe('compare 2 equal objects', function () {
     it('should return undefined when the values are equal', function () {
 		var lhs = JSON.parse(fs.readFileSync('test/artifacts/medication/medication1-1.json', 'utf8'));
@@ -38,6 +42,11 @@ describe('Insert', function(){
 			client.create(patient, null, function(entry){
 				//check for values?  can't gaurantee id value since that is dependent on state of server.
 				assert.isNotNull(entry, 'Returned null patient entry.');
+			
+				var components = entry.match(/(.*)\/(.*)\/_history\/(.*)/);
+				assert.equal(components[1], 'Patient');
+				basePatientId = components[2];
+				
 				console.log(entry);
 				done();
 			}, function(error){
@@ -56,7 +65,6 @@ describe('Insert', function(){
 			client.transaction(bundle, source, function(entry){
 				//check for values?  can't gaurantee id value since that is dependent on state of server.
 				assert.isNotNull(entry, 'Returned null transaction list entry.');
-//				assert.isDefined(entry.id, 'ID not present in returned patient entry.');
 				done();
 			}, function(error){
 				assert.fail('success response', 'error', 'failed to complete transaction.');
@@ -89,13 +97,13 @@ describe('Query', function(){
 	 it('should return a patient record', function(done){
 		 var client = factory.getClient('http://localhost:8080/fhir-test/base');
 
-		 client.getPatientRecord(1, function(err, bundle) {
+		 client.getPatientRecord(basePatientId, function(err, bundle) {
 				//do something with the bundle?
 			 	var count = (bundle.entry && bundle.entry.length) || 0;
 			  	assert.equal(1, count);
 			  	var patient = bundle.entry[0].resource;
-			  	assert.equal('Hill',  patient.name[0].family);
-			  	assert.equal('Robert',  patient.name[0].given[0]);
+			  	assert.equal(patient.name[0].family, 'Hill');
+			  	assert.equal(patient.name[0].given[0], 'Robert');
 			  	
 				done();
 		 });
@@ -132,16 +140,62 @@ describe('Query', function(){
 });
 
 
-//describe('Update', function(){
-//	describe('Update a Patient record', function(){
-//		 var client = factory.getClient('http://localhost:8080/fhir-test/base');
-//		 
-//		 
-//		 client.update();
-//
-//		
-//	});
-//});
+describe('Update', function(){
+	describe('Update a Patient record ', function(){
+		var source = fs.readFileSync('test/artifacts/patient/patient1-1.json', 'utf8');
+		var patient = JSON.parse(source);
+		var client = factory.getClient('http://localhost:8080/fhir-test/base', null);
+		it('should create patient to be updated', function(done){
+			//explicitly disabling provenance
+			client.create(patient, null, function(entry){
+				//check for values?  can't gaurantee id value since that is dependent on state of server.
+				assert.isNotNull(entry, 'Returned null patient entry.');
+				var components = entry.match(/((.*)\/(.*)\/_history\/(.*))/);
+				var id = components[3];
+				console.log('id: '+id);
+				patient.id = id;
+				done();
+			}, function(error){
+				assert.fail('success response', 'error', 'failed to create patient entrty.');
+				done();
+			} );	
+			
+		});
+		
+		it('Should update patient record', function(done){
+			patient.birthDate = "1974-12-14"
+//			console.log(JSON.stringify(patient));
+			client.update(patient, null, function(entry){
+				assert.isNotNull(entry, 'Returned null patient entry.');
+
+				var components = entry.match(/(.*)\/(.*)\/_history\/(.*)/);
+				assert.equal(components[1], 'Patient');
+				assert.equal(components[2], patient.id);
+				//since this is an update to a new record history should be 2
+				assert.equal(components[3], 2);
+				done();
+			}, 
+			function(error){
+				assert.fail('success response', 'error', 'failed to create patient entrty.');
+				done();
+			});
+		});
+		
+		it('should update a record and create a provenance entry for the update', function(done){
+
+				patient.birthDate = "1974-12-15"
+				client.updateWithProvenance(patient, source, function(entry, response, responseCode){
+					//check for values?  can't guarantee id value since that is dependent on state of server.
+					console.log('************'+entry);
+					assert.isNotNull(entry, 'Returned null patient entry.');
+					done();
+				}, function(error){
+					assert.fail('success resposne', 'error', 'failed to create patient entrty.');
+					done();
+				} );
+		});
+	});
+});
 
 
 describe('FindCandidates', function() {
