@@ -47,7 +47,6 @@ describe('Insert', function(){
 				assert.equal(components[1], 'Patient');
 				basePatientId = components[2];
 				
-				console.log(entry);
 				done();
 			}, function(error){
 				assert.fail('success response', 'error', 'failed to create patient entrty.');
@@ -115,7 +114,6 @@ describe('Query', function(){
 			 
 			 client.search("Medication", {code: {$exact:'http://www.nlm.nih.gov/research/umls/rxnorm|219483'}, _count: 1000}, function(err, bundle){
 			 	var count = (bundle.entry && bundle.entry.length) || 0;
-			 	console.log("Medication count: "+count);
 			  	assert.isAbove(count, 0);
 				done();
 			 });
@@ -129,7 +127,6 @@ describe('Query', function(){
 				  'http://www.nlm.nih.gov/research/umls/rxnorm|573621'
 				  ]}, _count:1000}, function(err, bundle){
 			 	var count = (bundle.entry && bundle.entry.length) || 0;
-			 	console.log("Medication count: "+count);
 			  	assert.isAbove(count, 0);
 				done();
 			 });
@@ -152,7 +149,6 @@ describe('Update', function(){
 				assert.isNotNull(entry, 'Returned null patient entry.');
 				var components = entry.match(/((.*)\/(.*)\/_history\/(.*))/);
 				var id = components[3];
-				console.log('id: '+id);
 				patient.id = id;
 				done();
 			}, function(error){
@@ -164,7 +160,6 @@ describe('Update', function(){
 		
 		it('Should update patient record', function(done){
 			patient.birthDate = "1974-12-14"
-//			console.log(JSON.stringify(patient));
 			client.update(patient, null, function(entry){
 				assert.isNotNull(entry, 'Returned null patient entry.');
 
@@ -186,7 +181,6 @@ describe('Update', function(){
 				patient.birthDate = "1974-12-15"
 				client.updateWithProvenance(patient, source, function(entry, response, responseCode){
 					//check for values?  can't guarantee id value since that is dependent on state of server.
-					console.log('************'+entry);
 					assert.isNotNull(entry, 'Returned null patient entry.');
 					done();
 				}, function(error){
