@@ -4,34 +4,7 @@ var fs = require('fs');
 var diff = require('deep-diff').diff;
 var factory = require('../lib/client');
 
-describe('Merge', function() {
-  
-  //id of the basic insert, which is in turn used for the basic search
-  var basePatientId;
-  
-  describe('compare 2 equal objects', function () {
-    it('should return undefined when the values are equal', function () {
-		var lhs = JSON.parse(fs.readFileSync('test/artifacts/medication/medication1-1.json', 'utf8'));
-		var rhs = JSON.parse(fs.readFileSync('test/artifacts/medication/medication1-2.json', 'utf8'));
-      var differences = diff(lhs, rhs);
-      expect(differences).to.be.undefined;
-    });
-  });
-  
-  describe('compare edited objects', function () {
-    it('should return a difference file when the values are not equal', function () {
-		var lhs = JSON.parse(fs.readFileSync('test/artifacts/medication/medication1-1.json', 'utf8'));
-		var rhs = JSON.parse(fs.readFileSync('test/artifacts/medication/medication1-3.json', 'utf8'));
-
-	    var differences = diff(lhs, rhs);
-	    //confirm it sees the edit
-		expect(differences).is.an('array').to.have.deep.property('[0].kind','E');
-		expect(differences).to.have.deep.property('[0].rhs','Flucloxacillin222');
-	      
-    });
-  });
-  
-});
+var basePatientId;
 
 describe('Insert', function(){
 	describe('Insert a patient record', function(){
@@ -88,8 +61,8 @@ describe('Insert', function(){
 			} );
 		});
 	});
+// end insert
 });
-
 
 describe('Query', function(){
   describe('Get Patient record', function(){
@@ -107,6 +80,15 @@ describe('Query', function(){
 				done();
 		 });
 	 });
+	 it('should return with search by patientId', function(done){
+		 var client = factory.getClient('http://localhost:8080/fhir-test/base');
+		 client.search('Patient', {identifier: {$exact:'urn:oid:0.1.2.3.4.5.6.7'+'|'+'1098667'}}, function(err, bundle){
+			 	var count = (bundle.entry && bundle.entry.length) || 0;
+			  	assert.isAbove(count, 0);	
+			  	done();
+		 });
+	 });
+  });
 	 
 	 describe('Get Medication', function(){ 
 		 it('should return a medication by code', function(done){
@@ -133,7 +115,7 @@ describe('Query', function(){
 			 
 		 });
 	 });
-  });
+  
 });
 
 
@@ -211,3 +193,49 @@ describe('addBundle', function() {
 	  });
 });
 
+describe('Merge', function() {
+	  
+	  //id of the basic insert, which is in turn used for the basic search
+	  
+	  
+	  describe('compare 2 equal objects', function () {
+	    it('should return undefined when the values are equal', function () {
+			var lhs = JSON.parse(fs.readFileSync('test/artifacts/medication/medication1-1.json', 'utf8'));
+			var rhs = JSON.parse(fs.readFileSync('test/artifacts/medication/medication1-2.json', 'utf8'));
+	      var differences = diff(lhs, rhs);
+	      expect(differences).to.be.undefined;
+	    });
+	  });
+	  
+	  describe('compare edited objects', function () {
+	    it('should return a difference file when the values are not equal', function () {
+			var lhs = JSON.parse(fs.readFileSync('test/artifacts/medication/medication1-1.json', 'utf8'));
+			var rhs = JSON.parse(fs.readFileSync('test/artifacts/medication/medication1-3.json', 'utf8'));
+
+		    var differences = diff(lhs, rhs);
+		    //confirm it sees the edit
+			expect(differences).is.an('array').to.have.deep.property('[0].kind','E');
+			expect(differences).to.have.deep.property('[0].rhs','Flucloxacillin222');
+		      
+	    });
+	  });
+
+	  describe('comparePatient', function(done){
+		  var client = factory.getClient('http://localhost:8080/fhir-test/base', null);
+		  var patient = JSON.parse(fs.readFileSync('test/artifacts/patient/patient0.json', 'utf8'));
+		  console.log(">>"+basePatientId);
+		  client.reconcile(patient, basePatientId, function(err, bundle) {
+				//do something with the bundle?
+			 	var count = (bundle.entry && bundle.entry.length) || 0;
+			  	assert.equal(1, count);
+			  	var patient = bundle.entry[0].resource;
+			  	assert.equal(patient.name[0].family, 'Hill');
+			  	assert.equal(patient.name[0].given[0], 'Robert');
+			  	
+				done();
+		 });
+		  
+		  
+		  
+	  });
+	});
