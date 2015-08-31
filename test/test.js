@@ -3,13 +3,22 @@ var expect = require("chai").expect;
 var fs = require('fs');
 var diff = require('deep-diff').diff;
 var factory = require('../lib/client');
-
+var spawn = require('child_process').spawn;
 var basePatientId;
 
-describe(
-		'fhir tests',
-		function() {
+describe('fhir tests',function() {
 			// start fhir server
+	var server;
+//			var server = spawn('java', ['-jar', '/home/mhiner/dfff/fhirTest-0.0.2-SNAPSHOT.jar', '/home/mhiner/dfff/hapi-fhir-test-memory.war']
+//			, {cwd: '/home/mhiner/dfff'});
+//			describe('Start Server', function(){
+//				it('should start a fhir server', function(done){
+//					this.timeout(12000);
+//					server = spawn('java', ['-jar', '/home/mhiner/dfff/fhirTest-0.0.2-SNAPSHOT.jar', '/home/mhiner/dfff/hapi-fhir-test-memory.war']
+//						, {cwd: '/home/mhiner/dfff'});
+//				});
+//			});
+	
 			describe('Insert',	function() {
 				describe( 'Insert a patient record',function() {
 						it('should insert a record into the database',function(done) {
@@ -87,7 +96,7 @@ describe(
 								assert.equal(patient.name[0].family,'Hill');
 								assert.equal(patient.name[0].given[0],'Robert');
 								done();
-							}, true);
+							}, false);
 					});
 					it('should return with search by patientId',function(done) {
 						var client = factory.getClient('http://localhost:8080/fhir-test/base');
@@ -216,7 +225,7 @@ describe(
 				});
 			});
 
-			describe('Merge',function() {
+			describe.only('Merge',function() {
 				describe('compare 2 equal objects', function() {
 					it('should return undefined when the values are equal',function() {
 						var lhs = JSON.parse(fs.readFileSync('test/artifacts/medication/medication1-1.json','utf8'));
@@ -238,35 +247,124 @@ describe(
 
 					});
 				});
+				
+				describe('compare objects with different order',function() {
+					it('should return a difference file when the values are not equal',function() {
+						var lhs = JSON.parse(fs.readFileSync('test/artifacts/generic/obj1.json','utf8'));
+						var rhs = JSON.parse(fs.readFileSync('test/artifacts/generic/obj2.json','utf8'));
 
-				describe('comparePatient',function() {	
+						var differences = diff(lhs, rhs);
+						// confirm it sees the edit
+						console.log(JSON.stringify(differences));
+
+					});
+				});
+				
+				
+				describe.skip('compare Prescription', function(){
+					it('should return comparison', function(done){
+						var pres1 = JSON.parse(fs.readFileSync('test/artifacts/prescription/prescription1-1.json','utf8'));
+						var pres2 = JSON.parse(fs.readFileSync('test/artifacts/prescription/prescription1-2.json','utf8'));
+						var client = factory.getClient('http://localhost:8080/fhir-test/base',null);
+						
+						client.reconcile(pres1,1,function(err, bundle) {
+							
+//							assert.equal('update', bundle.changeType);
+							console.log('>>>>>>>>>>>>>>>>>>>>'+JSON.stringify(bundle));
+							done();
+						});
+						
+						done();
+					});
+				});
+
+				describe('compare Patient',function() {	
+					
+					
+					var baseMergePatient = fs.readFileSync('test/artifacts/patient/patient0.json','utf8');
+					var baseMergePatientId;
+					
+					it('should insert a record into the database',function(done) {
+						var patient = JSON.parse(baseMergePatient);
+						// explicitly disabling provenance
+						var client = factory.getClient('http://localhost:8080/fhir-test/base',null);
+						client.create(patient,null,function(entry) {
+							// check for values? can't gaurantee id value
+							// since that is dependent on state of server.
+							assert.isNotNull(entry,'Returned null patient entry.');
+	
+							var components = entry.match(/(.*)\/(.*)\/_history\/(.*)/);
+							assert.equal(components[1],'Patient');
+							baseMergePatientId = components[2];
+//							console.log (entry);
+//							console.log(baseMergePatientId);
+							done();
+						},
+						function(error) {
+							assert.fail('success response','error','failed to create patient entrty.');
+							done();
+						});
+					});
+					
+					
 					it('should return  a reconciliation set',function(done) {
 						var client = factory.getClient('http://localhost:8080/fhir-test/base',null);
-						var patient = JSON.parse(fs.readFileSync('test/artifacts/patient/patient0.json','utf8'));
+						var patient = JSON.parse(fs.readFileSync('test/artifacts/patient/patient0-2.json','utf8'));
 										
-						client.reconcile(patient,basePatientId,function(err, bundle) {
-
-							var count = (bundle.entry && bundle.entry.length) || 0;
-							assert.equal(1, count);
-							var patient = bundle.entry[0].resource;
-							assert.equal(patient.name[0].family,'Hill');
-							assert.equal(patient.name[0].given[0],'Robert');
-
+						client.reconcile(patient,baseMergePatientId,function(err, bundle) {
+							
+							assert.equal('update', bundle.changeType);
+//							console.log(JSON.stringify(bundle));
 							done();
 						});
 					});
 				});
 
 				describe('reconcilePatientRecord',function() {
+					var reconcilePatientId;
+					it('should insert a bundle for reconciliation', function(done){
+
+						var source = fs.readFileSync('test/artifacts/bundle0.json','utf8');
+						var bundle = JSON.parse(source);
+						// explicitly disabling provenance
+						var client = factory.getClient('http://localhost:8080/fhir-test/base',null);
+						client.transaction(bundle,source,function(entry) {
+							// check for values? can't guarantee id value
+							// since that is dependent on state of server.
+							assert.isNotNull(entry,'Returned null transaction list entry.');
+							
+							//find the patientID among the responses.
+							for (var t =0; t < entry.length; t++){
+								var components = entry[t].match(/(.*)\/(.*)\/_history\/(.*)/);
+								if (components[1] == 'Patient'){
+									reconcilePatientId = components[2];	
+//									console.log('reconcile patient: '+reconcilePatientId+" "+entry[t]);
+									break;
+								}	
+							}
+							done();
+						},
+						function(error) {
+							assert.fail('success response','error','failed to complete transaction.');
+							done();
+						});
+				
+						
+					});
+					
 					it('should return  a reconciliation set',function(done) {
 
 						var client = factory.getClient('http://localhost:8080/fhir-test/base',null);
-						var patient = JSON.parse(fs.readFileSync('test/artifacts/patient/patient0.json','utf8'));
 						var source = fs.readFileSync('test/artifacts/bundle0.json','utf8');
 						var bundle = JSON.parse(source);
 						
-						//FIXME: set patient id static for the moment but this is incorrect
-						client.reconcilePatient(patient,1,function(err, bundle) {
+						client.reconcilePatient(bundle,reconcilePatientId,function(err, bundle) {
+							console.log()
+							fs.writeFile('b-0.json', JSON.stringify(bundle), function (err) {
+							  if (err) return console.log(err);
+							  console.log('file written');
+							});
+//							console.log("response: "+JSON.stringify(bundle));
 							// do something with the bundle?
 //							console.log('got here somewhow');
 //							var count = (bundle.entry && bundle.entry.length) || 0;
@@ -274,10 +372,6 @@ describe(
 //							var patient = bundle.entry[0].resource;
 //							assert.equal(patient.name[0].family,'Hill');
 //							assert.equal(patient.name[0].given[0],'Robert');
-		
-							console.log('*************************************');
-							console.log(JSON.stringify(bundle));
-							console.log('*************************************');
 							done();
 						});
 					});
@@ -285,5 +379,10 @@ describe(
 			});
 			
 			
-			// stop fhir server
+//			describe('shut down server', function(){
+//				it('should shutdown server', function(){
+//					server.kill();
+//				});
+//			});
+			
 		});
