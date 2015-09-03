@@ -117,6 +117,7 @@ describe('fhir tests',function() {
 							{code : {$exact : 'http://www.nlm.nih.gov/research/umls/rxnorm|219483'},_count : 1000},
 							function(err,bundle) {
 								var count = (bundle.entry && bundle.entry.length) || 0;
+								console.log(JSON.stringify(bundle, null, 2));
 								assert.isAbove(count,0);
 								done();
 							});
@@ -360,7 +361,7 @@ describe('fhir tests',function() {
 						
 						client.reconcilePatient(bundle,reconcilePatientId,function(err, bundle) {
 							console.log()
-							fs.writeFile('b-0.json', JSON.stringify(bundle), function (err) {
+							fs.writeFile('b-0.json', JSON.stringify(bundle, null, 2), function (err) {
 							  if (err) return console.log(err);
 							  console.log('file written');
 							});
