@@ -46,6 +46,7 @@ describe('fhir tests',function() {
 
 				describe('insert a bundle', function() {
 					it('should insert a bundle',function(done) {
+							this.timeout(4000);
 							var source = fs.readFileSync('test/artifacts/bundle0.json','utf8');
 							var bundle = JSON.parse(source);
 							// explicitly disabling provenance
@@ -69,6 +70,26 @@ describe('fhir tests',function() {
 							var patient = JSON.parse(source);
 							var client = factory.getClient('http://localhost:8080/fhir-test/base');
 							client.createWithProvenance(patient,source,
+								function(entry,response,responseCode) {
+									// check for values? can't guarantee id value since
+									// that is dependent on state of server.
+									assert.isNotNull(entry,'Returned null patient entry.');
+									done();
+								},
+								function(error) {
+									assert.fail('success resposne','error','failed to create patient entrty.');
+									done();
+								});
+						});
+				});
+				
+				describe('Insert a transaction into database with provenance', function(done) {
+					it('should insert a record and create a provenance entry for the insert',function(done) {
+							this.timeout(4000);
+							var source = fs.readFileSync('test/artifacts/bundle0.json','utf8');
+							var patient = JSON.parse(source);
+							var client = factory.getClient('http://localhost:8080/fhir-test/base');
+							client.transaction(patient,source,
 								function(entry,response,responseCode) {
 									// check for values? can't guarantee id value since
 									// that is dependent on state of server.
@@ -117,7 +138,7 @@ describe('fhir tests',function() {
 							{code : {$exact : 'http://www.nlm.nih.gov/research/umls/rxnorm|219483'},_count : 1000},
 							function(err,bundle) {
 								var count = (bundle.entry && bundle.entry.length) || 0;
-								console.log(JSON.stringify(bundle, null, 2));
+//								console.log(JSON.stringify(bundle, null, 2));
 								assert.isAbove(count,0);
 								done();
 							});
@@ -226,7 +247,7 @@ describe('fhir tests',function() {
 				});
 			});
 
-			describe.only('Merge',function() {
+			describe('Merge',function() {
 				describe('compare 2 equal objects', function() {
 					it('should return undefined when the values are equal',function() {
 						var lhs = JSON.parse(fs.readFileSync('test/artifacts/medication/medication1-1.json','utf8'));
@@ -256,13 +277,13 @@ describe('fhir tests',function() {
 
 						var differences = diff(lhs, rhs);
 						// confirm it sees the edit
-						console.log(JSON.stringify(differences));
+//						console.log(JSON.stringify(differences));
 
 					});
 				});
 				
 				
-				describe.skip('compare Prescription', function(){
+				describe('compare Prescription', function(){
 					it('should return comparison', function(done){
 						var pres1 = JSON.parse(fs.readFileSync('test/artifacts/prescription/prescription1-1.json','utf8'));
 						var pres2 = JSON.parse(fs.readFileSync('test/artifacts/prescription/prescription1-2.json','utf8'));
@@ -271,11 +292,9 @@ describe('fhir tests',function() {
 						client.reconcile(pres1,1,function(err, bundle) {
 							
 //							assert.equal('update', bundle.changeType);
-							console.log('>>>>>>>>>>>>>>>>>>>>'+JSON.stringify(bundle));
 							done();
 						});
 						
-						done();
 					});
 				});
 
@@ -323,8 +342,10 @@ describe('fhir tests',function() {
 
 				describe('reconcilePatientRecord',function() {
 					var reconcilePatientId;
+					var reconcilePatientId2;
 					it('should insert a bundle for reconciliation', function(done){
-
+						//giving additional time to complete because this is at the edge of 2 seconds
+						this.timeout(4000);
 						var source = fs.readFileSync('test/artifacts/bundle0.json','utf8');
 						var bundle = JSON.parse(source);
 						// explicitly disabling provenance
@@ -352,6 +373,52 @@ describe('fhir tests',function() {
 				
 						
 					});
+					//this is a repeat of the previous step, used so we can compare 2 patient records.
+					it('should insert a second bundle for reconciliation', function(done){
+						this.timeout(4000);
+						var source = fs.readFileSync('test/artifacts/bundle0.json','utf8');
+						var bundle = JSON.parse(source);
+						// explicitly disabling provenance
+						var client = factory.getClient('http://localhost:8080/fhir-test/base',null);
+						client.transaction(bundle,source,function(entry) {
+							// check for values? can't guarantee id value
+							// since that is dependent on state of server.
+							assert.isNotNull(entry,'Returned null transaction list entry.');
+							
+							//find the patientID among the responses.
+							for (var t =0; t < entry.length; t++){
+								var components = entry[t].match(/(.*)\/(.*)\/_history\/(.*)/);
+//								console.log('>>'+components);
+								if (components[1] == 'Patient'){
+									reconcilePatientId2 = components[2];	
+//									console.log('reconcile patient: '+reconcilePatientId+" "+entry[t]);
+									break;
+								}	
+							}
+							done();
+						},
+						function(error) {
+							assert.fail('success response','error','failed to complete transaction.');
+							done();
+						});
+				
+						
+					});
+					
+					it ('should compare 2 patients with matching records and consider all elements a match', function(){
+//						console.log("p1: "+reconcilePatientId);
+//						console.log("p2: "+reconcilePatientId2);
+						var client = factory.getClient('http://localhost:8080/fhir-test/base',null);
+						client.reconcilePatient(reconcilePatientId2,reconcilePatientId,function(err, bundle) {
+							
+							fs.writeFile('b-00.json', JSON.stringify(bundle, null, 2), function (err) {
+							  if (err) return console.log(err);
+							  console.log('file written');
+							});
+
+							done();
+						});
+					});
 					
 					it('should return  a reconciliation set',function(done) {
 
@@ -360,7 +427,6 @@ describe('fhir tests',function() {
 						var bundle = JSON.parse(source);
 						
 						client.reconcilePatient(bundle,reconcilePatientId,function(err, bundle) {
-							console.log()
 							fs.writeFile('b-0.json', JSON.stringify(bundle, null, 2), function (err) {
 							  if (err) return console.log(err);
 							  console.log('file written');

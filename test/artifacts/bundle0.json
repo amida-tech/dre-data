@@ -850,8 +850,8 @@
         }
       },
       "transaction": {
-        "method": "PUT",
-        "url": "Patient/test"
+        "method": "POST",
+        "url": "Patient"
       },
       "base": "http://localhost:8080/fhir"
     },
