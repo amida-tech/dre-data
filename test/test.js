@@ -429,7 +429,7 @@ describe('fhir tests',function() {
 						});
 					});
 					
-					it.only('should create a deduplication reconciliation set', function(done){
+					it('should create a deduplication reconciliation set', function(done){
 						this.timeout(8000);
 						//create a record
 						var source = fs.readFileSync('test/artifacts/deduplicationBundle.json','utf8')
