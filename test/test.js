@@ -7,18 +7,7 @@ var spawn = require('child_process').spawn;
 var basePatientId;
 
 describe('fhir tests',function() {
-			// start fhir server
-	var server;
-//			var server = spawn('java', ['-jar', '/home/mhiner/dfff/fhirTest-0.0.2-SNAPSHOT.jar', '/home/mhiner/dfff/hapi-fhir-test-memory.war']
-//			, {cwd: '/home/mhiner/dfff'});
-//			describe('Start Server', function(){
-//				it('should start a fhir server', function(done){
-//					this.timeout(12000);
-//					server = spawn('java', ['-jar', '/home/mhiner/dfff/fhirTest-0.0.2-SNAPSHOT.jar', '/home/mhiner/dfff/hapi-fhir-test-memory.war']
-//						, {cwd: '/home/mhiner/dfff'});
-//				});
-//			});
-	
+			// start fhir server	
 			describe('Insert',	function() {
 				describe( 'Insert a patient record',function() {
 						it('should insert a record into the database',function(done) {
@@ -321,7 +310,7 @@ describe('fhir tests',function() {
 							done();
 						},
 						function(error) {
-							assert.fail('success response','error','failed to create patient entrty.');
+							assert.fail('success response','error','failed to create patient entry.');
 							done();
 						});
 					});
@@ -406,8 +395,6 @@ describe('fhir tests',function() {
 					});
 					
 					it ('should compare 2 patients with matching records and consider all elements a match', function(){
-//						console.log("p1: "+reconcilePatientId);
-//						console.log("p2: "+reconcilePatientId2);
 						var client = factory.getClient('http://localhost:8080/fhir-test/base',null);
 						client.reconcilePatient(reconcilePatientId2,reconcilePatientId,function(err, bundle) {
 							
@@ -433,7 +420,6 @@ describe('fhir tests',function() {
 							});
 //							console.log("response: "+JSON.stringify(bundle));
 							// do something with the bundle?
-//							console.log('got here somewhow');
 //							var count = (bundle.entry && bundle.entry.length) || 0;
 //							assert.equal(1, count);
 //							var patient = bundle.entry[0].resource;
@@ -442,14 +428,48 @@ describe('fhir tests',function() {
 							done();
 						});
 					});
+					
+					it.only('should create a deduplication reconciliation set', function(done){
+						this.timeout(8000);
+						//create a record
+						var source = fs.readFileSync('test/artifacts/deduplicationBundle.json','utf8')
+						var patient = JSON.parse(source);
+						// explicitly disabling provenance
+						var client = factory.getClient('http://localhost:8080/fhir-test/base',null);
+						client.transaction(patient,null,function(entry) {
+								//now save the same record a second time
+								client.transaction(patient,null,function(entry) {
+									//get the id
+									//find the patientID among the responses.
+									for (var t =0; t < entry.length; t++){
+										var components = entry[t].match(/(.*)\/(.*)\/_history\/(.*)/);
+										if (components[1] == 'Patient'){
+											
+											client.deduplicate(components[2], function(errs, matchSet){
+												console.log('dedupe done');
+												fs.writeFile('matchSet-0.json', JSON.stringify(matchSet, null, 2), function (err) {
+													  if (err) return console.log(err);
+													  console.log('file written');
+												});
+												done();
+											});
+											break;
+										}	
+									}
+									
+								}, 
+								function(error) {
+									assert.fail('success response','error','failed to create patient entry.');
+									done();
+								});
+								
+						},
+						function(error) {
+							assert.fail('success response','error','failed to create patient entry.');
+							done();
+						});
+						
+					});
 				});
 			});
-			
-			
-//			describe('shut down server', function(){
-//				it('should shutdown server', function(){
-//					server.kill();
-//				});
-//			});
-			
 		});
