@@ -394,13 +394,13 @@ describe('fhir tests',function() {
 						
 					});
 					
-					it ('should compare 2 patients with matching records and consider all elements a match', function(){
+					it ('should compare 2 patients with matching records and consider all elements a match', function(done){
 						var client = factory.getClient('http://localhost:8080/fhir-test/base',null);
 						client.reconcilePatient(reconcilePatientId2,reconcilePatientId,function(err, bundle) {
 							
 							fs.writeFile('b-00.json', JSON.stringify(bundle, null, 2), function (err) {
 							  if (err) return console.log(err);
-							  console.log('file written');
+//							  console.log('file written');
 							});
 
 							done();
@@ -416,7 +416,7 @@ describe('fhir tests',function() {
 						client.reconcilePatient(bundle,reconcilePatientId,function(err, bundle) {
 							fs.writeFile('b-0.json', JSON.stringify(bundle, null, 2), function (err) {
 							  if (err) return console.log(err);
-							  console.log('file written');
+//							  console.log('file written');
 							});
 //							console.log("response: "+JSON.stringify(bundle));
 							// do something with the bundle?
@@ -446,10 +446,10 @@ describe('fhir tests',function() {
 										if (components[1] == 'Patient'){
 											
 											client.deduplicate(components[2], function(errs, matchSet){
-												console.log('dedupe done');
+//												console.log('dedupe done');
 												fs.writeFile('matchSet-0.json', JSON.stringify(matchSet, null, 2), function (err) {
 													  if (err) return console.log(err);
-													  console.log('file written');
+//													  console.log('file written');
 												});
 												done();
 											});
