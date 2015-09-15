@@ -3,11 +3,37 @@ var expect = require("chai").expect;
 var fs = require('fs');
 var diff = require('deep-diff').diff;
 var factory = require('../lib/client');
-var spawn = require('child_process').spawn;
+var spawn = require('child_process').spawnSync;
 var basePatientId;
 
 describe('fhir tests',function() {
-			// start fhir server	
+	
+			before(function() {
+				//This should take between 8-12 seconds but slow computers may take longer
+				var isWin = /^win/.test(process.platform);
+				if (!isWin){
+					this.timeout(24000);
+					console.log('starting server');
+					spawn('test/fhirServer/start.sh',['start']);
+					console.log('started');
+				}else{
+					console.log('fhir server must be manually started on Windows systems.');
+				}
+
+		    });
+
+			after(function() {
+				var isWin = /^win/.test(process.platform);
+				if (!isWin){
+					console.log('stopping server');
+					spawn('test/fhirServer/start.sh',['stop']);    
+					console.log('stopped');
+				}else{
+
+					console.log('fhir server must be manually stopped on Windows systems.');
+				}
+		    });
+			
 			describe('Insert',	function() {
 				describe( 'Insert a patient record',function() {
 						it('should insert a record into the database',function(done) {
@@ -127,7 +153,6 @@ describe('fhir tests',function() {
 							{code : {$exact : 'http://www.nlm.nih.gov/research/umls/rxnorm|219483'},_count : 1000},
 							function(err,bundle) {
 								var count = (bundle.entry && bundle.entry.length) || 0;
-//								console.log(JSON.stringify(bundle, null, 2));
 								assert.isAbove(count,0);
 								done();
 							});
@@ -397,12 +422,8 @@ describe('fhir tests',function() {
 					it ('should compare 2 patients with matching records and consider all elements a match', function(done){
 						var client = factory.getClient('http://localhost:8080/fhir-test/base',null);
 						client.reconcilePatient(reconcilePatientId2,reconcilePatientId,function(err, bundle) {
-							
-							fs.writeFile('b-00.json', JSON.stringify(bundle, null, 2), function (err) {
-							  if (err) return console.log(err);
-//							  console.log('file written');
-							});
 
+							//TODO: insert some validation
 							done();
 						});
 					});
@@ -414,10 +435,7 @@ describe('fhir tests',function() {
 						var bundle = JSON.parse(source);
 						
 						client.reconcilePatient(bundle,reconcilePatientId,function(err, bundle) {
-							fs.writeFile('b-0.json', JSON.stringify(bundle, null, 2), function (err) {
-							  if (err) return console.log(err);
-//							  console.log('file written');
-							});
+							//TODO: insert some validation
 //							console.log("response: "+JSON.stringify(bundle));
 							// do something with the bundle?
 //							var count = (bundle.entry && bundle.entry.length) || 0;
