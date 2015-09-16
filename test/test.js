@@ -8,10 +8,10 @@ var basePatientId;
 
 describe('fhir tests',function() {
 	
-			before(function() {
-				//This should take between 8-12 seconds but slow computers may take longer
+			before('starting server', function() {
 				var isWin = /^win/.test(process.platform);
 				if (!isWin){
+					//This should take between 8-12 seconds but slow computers may take longer
 					this.timeout(24000);
 					console.log('starting server');
 					spawn('test/fhirServer/start.sh',['start']);
@@ -22,7 +22,7 @@ describe('fhir tests',function() {
 
 		    });
 
-			after(function() {
+			after('stopping server', function() {
 				var isWin = /^win/.test(process.platform);
 				if (!isWin){
 					console.log('stopping server');
