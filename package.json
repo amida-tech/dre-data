@@ -7,17 +7,17 @@
     "test": "test"
   },
   "dependencies": {
-    "chai": "^2.3.0",
-    "deep-diff": "^0.3.2",
-    "fhir.js": "^0.0.7",
-    "lodash": "^3.10.1",
-    "request": "^2.61.0",
-    "brfs": "^1.4.1"
+    "chai": "~2.3.0",
+    "deep-diff": "~0.3.2",
+    "fhir.js": "~0.0.7",
+    "lodash": "~3.10.1",
+    "request": "~2.61.0",
+    "brfs": "~1.4.1"
   },
   "devDependencies": {
-    "mocha": "^2.2.5",
-    "mocha-lcov-reporter": "^0.0.2",
-    "coveralls": "^2.11.4"
+    "mocha": "~2.2.5",
+    "mocha-lcov-reporter": "~0.0.2",
+    "coveralls": "~2.11.4"
     
   },
   "scripts": {
