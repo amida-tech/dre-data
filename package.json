@@ -1,41 +1,36 @@
 {
   "name": "dre-data",
-  "version": "0.0.1",
-  "description": "FHIR record merge",
-  "main": "./index.js",
+  "version": "0.0.4",
+  "description": "Fhir merge functions",
+  "main": "index.js",
   "directories": {
-    "lib": "lib"
+    "test": "test"
+  },
+  "dependencies": {
+    "chai": "^2.3.0",
+    "deep-diff": "^0.3.2",
+    "fhir.js": "^0.0.7",
+    "lodash": "^3.10.1",
+    "request": "^2.61.0",
+    "brfs": "^1.4.1"
+  },
+  "devDependencies": {
+    "mocha": "^2.2.5",
+    "mocha-lcov-reporter": "^0.0.2",
+    "coveralls": "^2.11.4"
+    
   },
   "scripts": {
     "test": "mocha"
   },
-  "author": "Mike Hiner <mike@amida-tech.com>",
-  "license": "Apache-2.0",
-  "engines": {
-    "node": ">= 0.10.0"
-  },
-  "dependencies": {
-    "lodash": "~3.10.0",
-    "deep-diff": "~0.3.2",
-    "fhir.js": ">= 0.0.7",
-    "request": "~2.61.0" 
-  },
-  "devDependencies": {
-    "brfs": "~1.4.0",
-    "chai": "~2.3.0",
-    "coveralls": "~2.11.2",
-    "mocha": "~2.2.4",
-    "mocha-lcov-reporter": "0.0.2"
-  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/amida-tech/dre-data.git"
+    "url": "git+https://github.com/amida-tech/dre-data.git"
   },
-  "keywords": [
-    "fhir"
-  ],
+  "author": "Mike Hiner",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/amida-tech/dre-data/issues"
   },
-  "homepage": "https://github.com/amida-tech/dre-data"
+  "homepage": "https://github.com/amida-tech/dre-data#readme"
 }

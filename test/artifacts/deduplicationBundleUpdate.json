@@ -1,0 +1,106 @@
+{
+  "resourceType": "Bundle",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "MedicationPrescription",
+        "id": "MedicationPrescription/32",
+        "patient": {
+          "reference": "Patient/dupe"
+        },
+        "dosageInstruction": [
+          {
+            "scheduledTiming": {
+              "repeat": {
+                "period": "6",
+                "periodUnits": "h"
+              }
+            }
+          }
+        ],
+        "status": "completed",
+        "dispense": {
+          "validityPeriod": {
+            "start": "2009-04-13"
+          },
+          "numberOfRepeatsAllowed": 1,
+          "quantity": {
+            "value": 72
+          }
+        },
+        "medication": {
+          "reference": "Medication/451"
+        },
+        "prescriber": {
+          "reference": "Practitioner/453"
+        }
+      },
+      "transaction": {
+        "method": "POST",
+        "url": "MedicationPrescription"
+      },
+      "base": "http://localhost:8080/fhir"
+    },
+    {
+      "resource": {
+        "resourceType": "Procedure",
+        "id": "Procedure/55",
+        "patient": {
+          "reference": "Patient/dupe"
+        },
+        "identifier": [
+          {
+            "value": "d68b7e32-7810-4f5b-9cc2-acd54b0fd85d"
+          }
+        ],
+        "type": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "73991001",
+              "display": "Appendectomy"
+            }
+          ]
+        },
+        "status": "completed",
+        "performedDateTime": "2012-05-12",
+        "bodySite": [
+          {
+            "siteCodeableConcept": {
+              "coding": [
+                {
+                  "system": "urn:oid:2.16.840.1.113883.3.88.12.3221.8.9",
+                  "code": "appropriate_code",
+                  "display": "appendix"
+                }
+              ]
+            }
+          }
+        ],
+        "performer": [
+          {
+            "person": {
+              "reference": "Practitioner/468"
+            }
+          }
+        ],
+        "used": [
+          {
+            "reference": "Device/470"
+          }
+        ],
+        "location": {
+          "reference": "Location/474"
+        }
+      },
+      "transaction": {
+        "method": "POST",
+        "url": "Procedure"
+      },
+      "base": "http://localhost:8080/fhir"
+    }
+  ],
+  "id": "urn:hl7ii:2.16.840.1.113883.19.5.99999.1:TT988",
+  "type": "transaction"
+}
+

@@ -5,6 +5,8 @@ var diff = require('deep-diff').diff;
 var factory = require('../lib/client');
 var spawn = require('child_process').spawnSync;
 var basePatientId;
+var lev = require('../lib/levenshtien').getEditDistance;
+var dict = require('../lib/mergeDefinitions/definition');
 
 describe('fhir tests',function() {
 	
@@ -22,17 +24,17 @@ describe('fhir tests',function() {
 
 		    });
 
-			after('stopping server', function() {
-				var isWin = /^win/.test(process.platform);
-				if (!isWin){
-					console.log('stopping server');
-					spawn('test/fhirServer/start.sh',['stop']);    
-					console.log('stopped');
-				}else{
-
-					console.log('fhir server must be manually stopped on Windows systems.');
-				}
-		    });
+//			after('stopping server', function() {
+//				var isWin = /^win/.test(process.platform);
+//				if (!isWin){
+//					console.log('stopping server');
+//					spawn('test/fhirServer/start.sh',['stop']);    
+//					console.log('stopped');
+//				}else{
+//
+//					console.log('fhir server must be manually stopped on Windows systems.');
+//				}
+//		    });
 			
 			describe('Insert',	function() {
 				describe( 'Insert a patient record',function() {
@@ -211,7 +213,7 @@ describe('fhir tests',function() {
 					});
 					
 					it('Should update patient record',function(done) {
-						patient.birthDate = "1974-12-14"
+						patient.birthDate = "1974-12-14";
 						client.update(patient,null,function(entry) {
 							assert.isNotNull(entry,'Returned null patient entry.');
 
@@ -232,7 +234,7 @@ describe('fhir tests',function() {
 					});
 
 					it('should update a record and create a provenance entry for the update', function(done) {
-						patient.birthDate = "1974-12-15"
+						patient.birthDate = "1974-12-15";
 						client.updateWithProvenance(patient,source,function(entry,response,responseCode) {
 							// check for values? can't guarantee id value since
 							// that is dependent on state of server.
@@ -267,7 +269,7 @@ describe('fhir tests',function() {
 						var lhs = JSON.parse(fs.readFileSync('test/artifacts/medication/medication1-1.json','utf8'));
 						var rhs = JSON.parse(fs.readFileSync('test/artifacts/medication/medication1-2.json','utf8'));
 						var differences = diff(lhs, rhs);
-						expect(differences).to.be.undefined;
+						var j = expect(differences).to.be.undefined;
 					});
 				});
 
@@ -291,11 +293,20 @@ describe('fhir tests',function() {
 
 						var differences = diff(lhs, rhs);
 						// confirm it sees the edit
-//						console.log(JSON.stringify(differences));
 
 					});
 				});
 				
+				describe('compare objects with whitespace differences in properties',function() {
+					it('should return a difference file when the values are not equal',function() {
+						var lhs = JSON.parse(fs.readFileSync('test/artifacts/organization/organization0-1.json','utf8'));
+						var rhs = JSON.parse(fs.readFileSync('test/artifacts/organization/organization0-2.json','utf8'));
+						var vvv = dict.calculateScore(lhs, rhs, null);
+						//ignoring whitespace in the address they should be equal
+						assert.equal(100, vvv.score);
+						
+					});
+				});
 				
 				describe('compare Prescription', function(){
 					it('should return comparison', function(done){
@@ -450,7 +461,7 @@ describe('fhir tests',function() {
 					it('should create a deduplication reconciliation set', function(done){
 						this.timeout(8000);
 						//create a record
-						var source = fs.readFileSync('test/artifacts/deduplicationBundle.json','utf8')
+						var source = fs.readFileSync('test/artifacts/deduplicationBundle.json','utf8');
 						var patient = JSON.parse(source);
 						// explicitly disabling provenance
 						var client = factory.getClient('http://localhost:8080/fhir-test/base',null);
@@ -459,22 +470,21 @@ describe('fhir tests',function() {
 								client.transaction(patient,null,function(entry) {
 									//get the id
 									//find the patientID among the responses.
+									var patRec = null;
 									for (var t =0; t < entry.length; t++){
 										var components = entry[t].match(/(.*)\/(.*)\/_history\/(.*)/);
 										if (components[1] == 'Patient'){
-											
-											client.deduplicate(components[2], function(errs, matchSet){
-//												console.log('dedupe done');
-												fs.writeFile('matchSet-0.json', JSON.stringify(matchSet, null, 2), function (err) {
-													  if (err) return console.log(err);
-//													  console.log('file written');
-												});
-												done();
-											});
+											patRec = components[2];
 											break;
 										}	
 									}
-									
+
+									client.deduplicate(patRec, function(errs, matchSet){
+										fs.writeFile('matchSet-0.json', JSON.stringify(matchSet, null, 2), function (err) {
+											  if (err) return console.log(err);
+										});
+										done();
+									});
 								}, 
 								function(error) {
 									assert.fail('success response','error','failed to create patient entry.');
@@ -488,6 +498,21 @@ describe('fhir tests',function() {
 						});
 						
 					});
+
+					
+					it('should consolidate duplicates', function(done){
+						var client = factory.getClient('http://localhost:8080/fhir-test/base',null);
+//						client.getRecord('Condition',372, function(err, success){
+//							console.log('got here '+JSON.stringify(success));
+//							done();
+//						}, true);
+						client.merge('Condition', 450, [372], function(err, success){
+							done();
+						});
+						
+					});
+					
+					
 				});
 			});
 		});
