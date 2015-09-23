@@ -448,6 +448,9 @@ describe('fhir tests',function() {
 						client.reconcilePatient(bundle,reconcilePatientId,function(err, bundle) {
 							//TODO: insert some validation
 //							console.log("response: "+JSON.stringify(bundle));
+							fs.writeFile('reconcile-0.json', JSON.stringify(bundle, null, 2), function (err) {
+								  if (err) return console.log(err);
+							});
 							// do something with the bundle?
 //							var count = (bundle.entry && bundle.entry.length) || 0;
 //							assert.equal(1, count);
@@ -458,6 +461,54 @@ describe('fhir tests',function() {
 						});
 					});
 					
+					it('should create the patient to be deduplicated', function(done){
+						this.timeout(3000);
+						//create a record
+						var source = fs.readFileSync('test/artifacts/deduplicationBundle.json','utf8');
+						var patient = JSON.parse(source);
+						var client = factory.getClient('http://localhost:8080/fhir-test/base',null);
+						client.transaction(patient,null,function(entry) {
+							done();
+						});
+						
+					});
+					
+					it('should return  a reconciliation set from dedupe user',function(done) {
+						this.timeout(3000);
+						//create a record
+						var source = fs.readFileSync('test/artifacts/deduplicationBundle.json','utf8');
+						var patient = JSON.parse(source);
+						var client = factory.getClient('http://localhost:8080/fhir-test/base',null);
+						var bundle = JSON.parse(source);
+						
+						client.reconcilePatient(bundle,'dupe',function(err, bundle) {
+							//TODO: insert some validation
+//							console.log("response: "+JSON.stringify(bundle));
+							fs.writeFile('reconcile-dupe-0.json', JSON.stringify(bundle, null, 2), function (err) {
+								  if (err) return console.log(err);
+							});
+							// do something with the bundle?
+//							var count = (bundle.entry && bundle.entry.length) || 0;
+//							assert.equal(1, count);
+//							var patient = bundle.entry[0].resource;
+//							assert.equal(patient.name[0].family,'Hill');
+//							assert.equal(patient.name[0].given[0],'Robert');
+							done();
+						});
+					});					
+					
+					it('should add duplicate elements to the patient', function(done){
+						this.timeout(3000);
+						//create a record
+						var source = fs.readFileSync('test/artifacts/deduplicationBundle.json','utf8');
+						var patient = JSON.parse(source);
+						var client = factory.getClient('http://localhost:8080/fhir-test/base',null);
+						client.transaction(patient,null,function(entry) {
+							done();
+						});
+						
+					});
+					
 					it('should create a deduplication reconciliation set', function(done){
 						this.timeout(8000);
 						//create a record
@@ -465,37 +516,16 @@ describe('fhir tests',function() {
 						var patient = JSON.parse(source);
 						// explicitly disabling provenance
 						var client = factory.getClient('http://localhost:8080/fhir-test/base',null);
-						client.transaction(patient,null,function(entry) {
 								//now save the same record a second time
-								client.transaction(patient,null,function(entry) {
-									//get the id
-									//find the patientID among the responses.
-									var patRec = null;
-									for (var t =0; t < entry.length; t++){
-										var components = entry[t].match(/(.*)\/(.*)\/_history\/(.*)/);
-										if (components[1] == 'Patient'){
-											patRec = components[2];
-											break;
-										}	
-									}
 
-									client.deduplicate(patRec, function(errs, matchSet){
-										fs.writeFile('matchSet-0.json', JSON.stringify(matchSet, null, 2), function (err) {
-											  if (err) return console.log(err);
-										});
-										done();
-									});
-								}, 
-								function(error) {
-									assert.fail('success response','error','failed to create patient entry.');
-									done();
-								});
-								
-						},
-						function(error) {
-							assert.fail('success response','error','failed to create patient entry.');
+
+						client.deduplicate('dupe', function(errs, matchSet){
+							fs.writeFile('matchSet-0.json', JSON.stringify(matchSet, null, 2), function (err) {
+								  if (err) return console.log(err);
+							});
 							done();
 						});
+
 						
 					});
 
