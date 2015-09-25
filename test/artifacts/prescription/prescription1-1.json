@@ -1,5 +1,5 @@
 {
-  "resourceType": "MedicationPrescription",
+  "resourceType": "MedicationOrder",
   "identifier": [
     {
       "use": "official",

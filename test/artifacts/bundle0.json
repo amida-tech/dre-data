@@ -259,7 +259,7 @@
               "reference": "Patient/test"
             },
             "content": {
-              "reference": "MedicationPrescription/32"
+              "reference": "MedicationOrder/32"
             }
           },
           {
@@ -638,7 +638,7 @@
         },
         "title": "Community Health and Hospitals: Health Summary"
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Composition"
       },
@@ -849,7 +849,7 @@
           "reference": "Organization/1"
         }
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Patient"
       },
@@ -879,7 +879,7 @@
           }
         ]
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Organization"
       },
@@ -932,7 +932,7 @@
           }
         ]
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "AllergyIntolerance"
       },
@@ -985,7 +985,7 @@
           }
         ]
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "AllergyIntolerance"
       },
@@ -1038,7 +1038,7 @@
           }
         ]
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "AllergyIntolerance"
       },
@@ -1109,7 +1109,7 @@
           }
         ]
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Encounter"
       },
@@ -1138,7 +1138,7 @@
           }
         ]
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Practitioner"
       },
@@ -1168,7 +1168,7 @@
         },
         "name": "Community Urgent Care Center"
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Location"
       },
@@ -1234,7 +1234,7 @@
           }
         ]
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "FamilyMemberHistory"
       },
@@ -1257,7 +1257,7 @@
           }
         ]
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "ClinicalImpression"
       },
@@ -1304,7 +1304,7 @@
           ]
         }
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Observation"
       },
@@ -1327,7 +1327,7 @@
           }
         ]
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "ClinicalImpression"
       },
@@ -1377,7 +1377,7 @@
           "text": "Non Aggressive to Aggressive"
         }
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Observation"
       },
@@ -1421,7 +1421,7 @@
           "reference": "Practitioner/15"
         }
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Immunization"
       },
@@ -1433,7 +1433,7 @@
         "id": "Organization/14",
         "name": "Health LS - Immuno Inc."
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Organization"
       },
@@ -1480,7 +1480,7 @@
           }
         ]
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Practitioner"
       },
@@ -1492,7 +1492,7 @@
         "id": "Organization/16",
         "name": "Good Health Clinic"
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Organization"
       },
@@ -1537,7 +1537,7 @@
           "reference": "Practitioner/19"
         }
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Immunization"
       },
@@ -1549,7 +1549,7 @@
         "id": "Organization/18",
         "name": "Health LS - Immuno Inc."
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Organization"
       },
@@ -1596,7 +1596,7 @@
           }
         ]
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Practitioner"
       },
@@ -1608,7 +1608,7 @@
         "id": "Organization/20",
         "name": "Good Health Clinic"
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Organization"
       },
@@ -1652,7 +1652,7 @@
           "reference": "Practitioner/23"
         }
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Immunization"
       },
@@ -1664,7 +1664,7 @@
         "id": "Organization/22",
         "name": "Health LS - Immuno Inc."
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Organization"
       },
@@ -1711,7 +1711,7 @@
           }
         ]
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Practitioner"
       },
@@ -1723,7 +1723,7 @@
         "id": "Organization/24",
         "name": "Good Health Clinic"
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Organization"
       },
@@ -1781,7 +1781,7 @@
           ]
         }
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Immunization"
       },
@@ -1793,7 +1793,7 @@
         "id": "Organization/26",
         "name": "Health LS - Immuno Inc."
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Organization"
       },
@@ -1840,7 +1840,7 @@
           }
         ]
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Practitioner"
       },
@@ -1852,7 +1852,7 @@
         "id": "Organization/28",
         "name": "Good Health Clinic"
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Organization"
       },
@@ -1881,7 +1881,7 @@
           ]
         }
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Device"
       },
@@ -1910,7 +1910,7 @@
           ]
         }
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Device"
       },
@@ -1939,7 +1939,7 @@
           ]
         }
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Device"
       },
@@ -1947,8 +1947,8 @@
     },
     {
       "resource": {
-        "resourceType": "MedicationPrescription",
-        "id": "MedicationPrescription/32",
+        "resourceType": "MedicationOrder",
+        "id": "MedicationOrder/32",
         "patient": {
           "reference": "Patient/test"
         },
@@ -1982,9 +1982,9 @@
           "reference": "Practitioner/41"
         }
       },
-      "transaction": {
+      "request": {
         "method": "POST",
-        "url": "MedicationPrescription"
+        "url": "MedicationOrder"
       },
       "base": "http://localhost:8080/fhir"
     },
@@ -1996,7 +1996,7 @@
           "reference": "Patient/test"
         },
         "prescription": {
-          "reference": "MedicationPrescription/32"
+          "reference": "MedicationOrder/32"
         },
         "dosage": [
           {
@@ -2042,7 +2042,7 @@
           "reference": "Practitioner/36"
         }
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "MedicationAdministration"
       },
@@ -2066,7 +2066,7 @@
           "reference": "Organization/35"
         }
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Medication"
       },
@@ -2078,7 +2078,7 @@
         "id": "Organization/35",
         "name": "Medication Factory Inc."
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Organization"
       },
@@ -2099,7 +2099,7 @@
           }
         ]
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Practitioner"
       },
@@ -2111,7 +2111,7 @@
         "id": "Organization/37",
         "name": "Community Health and Hospitals"
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Organization"
       },
@@ -2147,7 +2147,7 @@
           ]
         }
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Condition"
       },
@@ -2171,7 +2171,7 @@
           "reference": "Organization/40"
         }
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Medication"
       },
@@ -2183,7 +2183,7 @@
         "id": "Organization/40",
         "name": "Medication Factory Inc."
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Organization"
       },
@@ -2209,7 +2209,7 @@
           }
         ]
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Practitioner"
       },
@@ -2253,7 +2253,7 @@
           }
         ]
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Claim"
       },
@@ -2275,7 +2275,7 @@
           "reference": "Organization/44"
         }
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Coverage"
       },
@@ -2306,7 +2306,7 @@
           }
         ]
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Organization"
       },
@@ -2342,7 +2342,7 @@
           }
         ]
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "CarePlan"
       },
@@ -2367,7 +2367,7 @@
         "status": "new",
         "timingDateTime": "2012-05-12"
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "ProcedureRequest"
       },
@@ -2392,7 +2392,7 @@
         "status": "new",
         "timingDateTime": "2012-05-12"
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "ProcedureRequest"
       },
@@ -2417,7 +2417,7 @@
         "status": "new",
         "timingDateTime": "2012-05-12"
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "ProcedureRequest"
       },
@@ -2442,7 +2442,7 @@
         "status": "new",
         "timingDateTime": "2012-05-12"
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "ProcedureRequest"
       },
@@ -2464,7 +2464,7 @@
           }
         ]
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "ClinicalImpression"
       },
@@ -2514,7 +2514,7 @@
           "code": "445518008"
         }
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Condition"
       },
@@ -2556,7 +2556,7 @@
           ]
         }
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Observation"
       },
@@ -2606,7 +2606,7 @@
           "code": "445518008"
         }
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Condition"
       },
@@ -2648,7 +2648,7 @@
           ]
         }
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Observation"
       },
@@ -2713,7 +2713,7 @@
           "reference": "Location/62"
         }
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Procedure"
       },
@@ -2756,7 +2756,7 @@
           }
         ]
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Practitioner"
       },
@@ -2785,7 +2785,7 @@
           }
         ]
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Organization"
       },
@@ -2813,7 +2813,7 @@
           ]
         }
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Device"
       },
@@ -2858,7 +2858,7 @@
           }
         ]
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Observation"
       },
@@ -2901,7 +2901,7 @@
           }
         ]
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Practitioner"
       },
@@ -2913,7 +2913,7 @@
         "id": "Organization/61",
         "name": "Community Health and Hospitals"
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Organization"
       },
@@ -2943,7 +2943,7 @@
         },
         "name": "Community Gastroenterology Clinic"
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Location"
       },
@@ -2988,7 +2988,7 @@
           "text": "M 13-18 g/dl; F 12-16 g/dl"
         }
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Observation"
       },
@@ -3040,7 +3040,7 @@
           }
         }
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Observation"
       },
@@ -3092,7 +3092,7 @@
           }
         }
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Observation"
       },
@@ -3133,7 +3133,7 @@
           ]
         }
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Observation"
       },
@@ -3167,7 +3167,7 @@
         },
         "valueString": "1 pack per day"
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Observation"
       },
@@ -3200,7 +3200,7 @@
         },
         "valueString": "None"
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Observation"
       },
@@ -3233,7 +3233,7 @@
         },
         "valueString": "None"
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Observation"
       },
@@ -3275,7 +3275,7 @@
           ]
         }
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Observation"
       },
@@ -3317,7 +3317,7 @@
           ]
         }
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Observation"
       },
@@ -3359,7 +3359,7 @@
           ]
         }
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Observation"
       },
@@ -3401,7 +3401,7 @@
           ]
         }
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Observation"
       },
@@ -3443,7 +3443,7 @@
           ]
         }
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Observation"
       },
@@ -3485,7 +3485,7 @@
           ]
         }
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Observation"
       },
@@ -3527,7 +3527,7 @@
           ]
         }
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Observation"
       },
@@ -3569,7 +3569,7 @@
           ]
         }
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Observation"
       },
