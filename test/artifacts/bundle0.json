@@ -3,649 +3,6 @@
   "entry": [
     {
       "resource": {
-        "resourceType": "Composition",
-        "id": "Composition/0",
-        "section": [
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Organization/1"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "AllergyIntolerance/2"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "AllergyIntolerance/3"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "AllergyIntolerance/4"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Encounter/5"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Practitioner/6"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Location/7"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "FamilyMemberHistory/8"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "ClinicalImpression/9"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Observation/10"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "ClinicalImpression/11"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Observation/12"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Immunization/13"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Organization/14"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Practitioner/15"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Organization/16"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Immunization/17"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Organization/18"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Practitioner/19"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Organization/20"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Immunization/21"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Organization/22"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Practitioner/23"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Organization/24"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Immunization/25"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Organization/26"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Practitioner/27"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Organization/28"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Device/29"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Device/30"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Device/31"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "MedicationOrder/32"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "MedicationAdministration/33"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Medication/34"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Organization/35"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Practitioner/36"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Organization/37"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Condition/38"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Medication/39"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Organization/40"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Practitioner/41"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Claim/42"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Coverage/43"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Organization/44"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "CarePlan/45"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "ProcedureRequest/46"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "ProcedureRequest/47"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "ProcedureRequest/48"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "ProcedureRequest/49"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "ClinicalImpression/50"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Condition/51"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Observation/52"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Condition/53"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Observation/54"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Procedure/55"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Practitioner/56"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Organization/57"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Device/58"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Observation/59"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Practitioner/60"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Organization/61"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Location/62"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Observation/63"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Observation/64"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Observation/65"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Observation/66"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Observation/67"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Observation/68"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Observation/69"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Observation/70"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Observation/71"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Observation/72"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Observation/73"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Observation/74"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Observation/75"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Observation/76"
-            }
-          },
-          {
-            "subject": {
-              "reference": "Patient/test"
-            },
-            "content": {
-              "reference": "Observation/77"
-            }
-          }
-        ],
-        "type": {
-          "coding": [
-            {
-              "system": "http://loinc.org",
-              "code": "34133-9",
-              "display": "Summarization of Episode Note"
-            },
-            {
-              "system": "LOINC",
-              "code": "34133-9"
-            }
-          ]
-        },
-        "title": "Community Health and Hospitals: Health Summary"
-      },
-      "request": {
-        "method": "POST",
-        "url": "Composition"
-      },
-      "base": "http://localhost:8080/fhir"
-    },
-    {
-      "resource": {
         "resourceType": "Patient",
         "id": "Patient/test",
         "identifier": [
@@ -852,8 +209,7 @@
       "request": {
         "method": "POST",
         "url": "Patient"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -882,8 +238,7 @@
       "request": {
         "method": "POST",
         "url": "Organization"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -894,7 +249,7 @@
         },
         "status": "Inactive",
         "lastOccurence": "2007-05-01",
-        "event": [
+        "reaction": [
           {
             "onset": "2007-05-01",
             "manifestation": [
@@ -935,8 +290,7 @@
       "request": {
         "method": "POST",
         "url": "AllergyIntolerance"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -947,7 +301,7 @@
         },
         "status": "Active",
         "lastOccurence": "2006-05-01",
-        "event": [
+        "reaction": [
           {
             "onset": "2006-05-01",
             "manifestation": [
@@ -988,8 +342,7 @@
       "request": {
         "method": "POST",
         "url": "AllergyIntolerance"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -1000,7 +353,7 @@
         },
         "status": "Active",
         "lastOccurence": "2008-05-01",
-        "event": [
+        "reaction": [
           {
             "onset": "2008-05-01",
             "manifestation": [
@@ -1041,8 +394,7 @@
       "request": {
         "method": "POST",
         "url": "AllergyIntolerance"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -1112,8 +464,7 @@
       "request": {
         "method": "POST",
         "url": "Encounter"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -1141,8 +492,7 @@
       "request": {
         "method": "POST",
         "url": "Practitioner"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -1171,8 +521,7 @@
       "request": {
         "method": "POST",
         "url": "Location"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -1208,11 +557,10 @@
               "code": "419099009",
               "display": "Dead"
             },
-            "onsetAge": {
+            "onsetQuantity": {
               "value": 57,
-              "units": "a",
-              "system": "http://snomed.info/sct",
-              "code": "445518008"
+              "system": "http://unitofmeasure.org",
+              "code": "year"
             }
           },
           {
@@ -1225,11 +573,10 @@
                 }
               ]
             },
-            "onsetAge": {
+            "onsetQuantity": {
               "value": 40,
-              "units": "a",
-              "system": "http://snomed.info/sct",
-              "code": "445518008"
+              "system": "http://unitofmeasure.org",
+              "code": "year"
             }
           }
         ]
@@ -1237,8 +584,7 @@
       "request": {
         "method": "POST",
         "url": "FamilyMemberHistory"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -1260,8 +606,7 @@
       "request": {
         "method": "POST",
         "url": "ClinicalImpression"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -1285,7 +630,7 @@
           ]
         },
         "status": "completed",
-        "appliesDateTime": "2009-03-11T12:30:00",
+        "effectiveDateTime": "2009-03-11T12:30:00",
         "valueCodeableConcept": {
           "coding": [
             {
@@ -1307,8 +652,7 @@
       "request": {
         "method": "POST",
         "url": "Observation"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -1330,8 +674,7 @@
       "request": {
         "method": "POST",
         "url": "ClinicalImpression"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -1355,7 +698,7 @@
           ]
         },
         "status": "completed",
-        "appliesDateTime": "2009-03-11T12:30:00",
+        "effectiveDateTime": "2009-03-11T12:30:00",
         "valueCodeableConcept": {
           "coding": [
             {
@@ -1380,8 +723,7 @@
       "request": {
         "method": "POST",
         "url": "Observation"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -1402,9 +744,10 @@
         },
         "doseQuantity": {
           "value": 50,
-          "units": "mcg"
+          "system": "http://unitofmeasure.org",
+          "code": "mcg"
         },
-        "vaccineType": {
+        "vaccineCode": {
           "coding": [
             {
               "system": "http://www2a.cdc.gov/vaccines/iis/iisstandards/vaccines.asp?rpt=cvx",
@@ -1424,8 +767,7 @@
       "request": {
         "method": "POST",
         "url": "Immunization"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -1436,8 +778,7 @@
       "request": {
         "method": "POST",
         "url": "Organization"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -1469,9 +810,6 @@
             ]
           }
         ],
-        "managingOrganization": {
-          "reference": "Organization/16"
-        },
         "practitionerRole": [
           {
             "managingOrganization": {
@@ -1483,8 +821,7 @@
       "request": {
         "method": "POST",
         "url": "Practitioner"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -1495,8 +832,7 @@
       "request": {
         "method": "POST",
         "url": "Organization"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -1518,9 +854,10 @@
         },
         "doseQuantity": {
           "value": 50,
-          "units": "mcg"
+          "system": "http://unitofmeasure.org",
+ 		  "code": "mcg"
         },
-        "vaccineType": {
+        "vaccineCode": {
           "coding": [
             {
               "system": "http://www2a.cdc.gov/vaccines/iis/iisstandards/vaccines.asp?rpt=cvx",
@@ -1540,8 +877,7 @@
       "request": {
         "method": "POST",
         "url": "Immunization"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -1552,8 +888,7 @@
       "request": {
         "method": "POST",
         "url": "Organization"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -1585,9 +920,6 @@
             ]
           }
         ],
-        "managingOrganization": {
-          "reference": "Organization/20"
-        },
         "practitionerRole": [
           {
             "managingOrganization": {
@@ -1599,8 +931,7 @@
       "request": {
         "method": "POST",
         "url": "Practitioner"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -1611,8 +942,7 @@
       "request": {
         "method": "POST",
         "url": "Organization"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -1633,9 +963,10 @@
         },
         "doseQuantity": {
           "value": 50,
-          "units": "mcg"
+          "system": "http://unitofmeasure.org",
+ 		  "code": "mcg"
         },
-        "vaccineType": {
+        "vaccineCode": {
           "coding": [
             {
               "system": "http://www2a.cdc.gov/vaccines/iis/iisstandards/vaccines.asp?rpt=cvx",
@@ -1655,8 +986,7 @@
       "request": {
         "method": "POST",
         "url": "Immunization"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -1667,8 +997,7 @@
       "request": {
         "method": "POST",
         "url": "Organization"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -1700,9 +1029,6 @@
             ]
           }
         ],
-        "managingOrganization": {
-          "reference": "Organization/24"
-        },
         "practitionerRole": [
           {
             "managingOrganization": {
@@ -1714,8 +1040,7 @@
       "request": {
         "method": "POST",
         "url": "Practitioner"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -1726,8 +1051,7 @@
       "request": {
         "method": "POST",
         "url": "Organization"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -1749,9 +1073,10 @@
         },
         "doseQuantity": {
           "value": 50,
-          "units": "mcg"
+          "system": "http://unitofmeasure.org",
+ 		  "code": "mcg"
         },
-        "vaccineType": {
+        "vaccineCode": {
           "coding": [
             {
               "system": "http://www2a.cdc.gov/vaccines/iis/iisstandards/vaccines.asp?rpt=cvx",
@@ -1768,7 +1093,7 @@
           "reference": "Practitioner/27"
         },
         "explanation": {
-          "resonNotGiven": [
+          "reasonNotGiven": [
             {
               "coding": [
                 {
@@ -1784,8 +1109,7 @@
       "request": {
         "method": "POST",
         "url": "Immunization"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -1796,8 +1120,7 @@
       "request": {
         "method": "POST",
         "url": "Organization"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -1829,9 +1152,6 @@
             ]
           }
         ],
-        "managingOrganization": {
-          "reference": "Organization/28"
-        },
         "practitionerRole": [
           {
             "managingOrganization": {
@@ -1843,8 +1163,7 @@
       "request": {
         "method": "POST",
         "url": "Practitioner"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -1855,8 +1174,7 @@
       "request": {
         "method": "POST",
         "url": "Organization"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -1884,8 +1202,7 @@
       "request": {
         "method": "POST",
         "url": "Device"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -1913,8 +1230,7 @@
       "request": {
         "method": "POST",
         "url": "Device"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -1942,8 +1258,7 @@
       "request": {
         "method": "POST",
         "url": "Device"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -1954,7 +1269,7 @@
         },
         "dosageInstruction": [
           {
-            "scheduledTiming": {
+            "timing": {
               "repeat": {
                 "period": "6",
                 "periodUnits": "h"
@@ -1966,7 +1281,7 @@
           "reference": "Condition/38"
         },
         "status": "completed",
-        "dispense": {
+        "dispenseRequest": {
           "validityPeriod": {
             "start": "2007-01-03"
           },
@@ -1975,7 +1290,7 @@
             "value": 75
           }
         },
-        "medication": {
+        "medicationReference": {
           "reference": "Medication/39"
         },
         "prescriber": {
@@ -1985,8 +1300,7 @@
       "request": {
         "method": "POST",
         "url": "MedicationOrder"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -2011,12 +1325,14 @@
             },
             "quantity": {
               "value": 1,
-              "units": "mg/actuat"
+              "system": "http://unitofmeasure.org",
+ 		 	  "code": "mg/actuat"
             },
-            "rate": {
+            "rateRatio": {
               "numerator": {
                 "value": 90,
-                "units": "ml/min"
+                "system": "http://unitofmeasure.org",
+ 				"code": "ml/min"
               }
             },
             "method": {
@@ -2035,7 +1351,7 @@
           "start": "2007-01-03",
           "end": "2012-05-15"
         },
-        "medication": {
+        "medicationReference": {
           "reference": "Medication/34"
         },
         "practitioner": {
@@ -2045,14 +1361,12 @@
       "request": {
         "method": "POST",
         "url": "MedicationAdministration"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
         "resourceType": "Medication",
         "id": "Medication/34",
-        "name": "Proventil HFA",
         "code": {
           "coding": [
             {
@@ -2069,8 +1383,7 @@
       "request": {
         "method": "POST",
         "url": "Medication"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -2081,16 +1394,12 @@
       "request": {
         "method": "POST",
         "url": "Organization"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
         "resourceType": "Practitioner",
         "id": "Practitioner/36",
-        "managingOrganization": {
-          "reference": "Organization/37"
-        },
         "practitionerRole": [
           {
             "managingOrganization": {
@@ -2102,8 +1411,7 @@
       "request": {
         "method": "POST",
         "url": "Practitioner"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -2114,8 +1422,7 @@
       "request": {
         "method": "POST",
         "url": "Organization"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -2150,14 +1457,12 @@
       "request": {
         "method": "POST",
         "url": "Condition"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
         "resourceType": "Medication",
         "id": "Medication/39",
-        "name": "Proventil 0.09 MG/ACTUAT inhalant solution",
         "code": {
           "coding": [
             {
@@ -2174,8 +1479,7 @@
       "request": {
         "method": "POST",
         "url": "Medication"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -2186,8 +1490,7 @@
       "request": {
         "method": "POST",
         "url": "Organization"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -2212,8 +1515,7 @@
       "request": {
         "method": "POST",
         "url": "Practitioner"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -2256,8 +1558,7 @@
       "request": {
         "method": "POST",
         "url": "Claim"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -2278,8 +1579,7 @@
       "request": {
         "method": "POST",
         "url": "Coverage"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -2309,8 +1609,7 @@
       "request": {
         "method": "POST",
         "url": "Organization"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -2345,8 +1644,7 @@
       "request": {
         "method": "POST",
         "url": "CarePlan"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -2365,13 +1663,12 @@
           ]
         },
         "status": "new",
-        "timingDateTime": "2012-05-12"
+        "scheduledDateTime": "2012-05-12"
       },
       "request": {
         "method": "POST",
         "url": "ProcedureRequest"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -2390,13 +1687,12 @@
           ]
         },
         "status": "new",
-        "timingDateTime": "2012-05-12"
+        "scheduledDateTime": "2012-05-12"
       },
       "request": {
         "method": "POST",
         "url": "ProcedureRequest"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -2415,13 +1711,12 @@
           ]
         },
         "status": "new",
-        "timingDateTime": "2012-05-12"
+        "scheduledDateTime": "2012-05-12"
       },
       "request": {
         "method": "POST",
         "url": "ProcedureRequest"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -2440,13 +1735,12 @@
           ]
         },
         "status": "new",
-        "timingDateTime": "2012-05-12"
+        "scheduledDateTime": "2012-05-12"
       },
       "request": {
         "method": "POST",
         "url": "ProcedureRequest"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -2467,8 +1761,7 @@
       "request": {
         "method": "POST",
         "url": "ClinicalImpression"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -2507,18 +1800,16 @@
           "start": "2008-01-03",
           "end": "2009-02-27T13:00:00"
         },
-        "onsetAge": {
+        "onsetQuantity": {
           "value": 57,
-          "units": "a",
           "system": "http://snomed.info/sct",
-          "code": "445518008"
+          "code": "year"
         }
       },
       "request": {
         "method": "POST",
         "url": "Condition"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -2542,7 +1833,7 @@
           ]
         },
         "status": "completed",
-        "appliesPeriod": {
+        "effectivePeriod": {
           "start": "2008-01-03",
           "end": "2008-01-03"
         },
@@ -2559,8 +1850,7 @@
       "request": {
         "method": "POST",
         "url": "Observation"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -2599,18 +1889,16 @@
           "start": "2008-01-03",
           "end": "2009-02-27T13:00:00"
         },
-        "onsetAge": {
+        "onsetQuantity": {
           "value": 57,
-          "units": "a",
-          "system": "http://snomed.info/sct",
-          "code": "445518008"
+          "system": "http://unitofmeasure.org",
+          "code": "year"
         }
       },
       "request": {
         "method": "POST",
         "url": "Condition"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -2634,7 +1922,7 @@
           ]
         },
         "status": "completed",
-        "appliesPeriod": {
+        "effectivePeriod": {
           "start": "2007-01-03",
           "end": "2008-01-03"
         },
@@ -2651,8 +1939,7 @@
       "request": {
         "method": "POST",
         "url": "Observation"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -2679,20 +1966,18 @@
         "performedDateTime": "2012-05-12",
         "bodySite": [
           {
-            "siteCodeableConcept": {
-              "coding": [
-                {
-                  "system": "urn:oid:2.16.840.1.113883.3.88.12.3221.8.9",
-                  "code": "appropriate_code",
-                  "display": "colon"
-                }
-              ]
-            }
+	          "coding": [
+	            {
+	              "system": "urn:oid:2.16.840.1.113883.3.88.12.3221.8.9",
+	              "code": "appropriate_code",
+	              "display": "colon"
+	            }
+	          ]
           }
         ],
         "performer": [
           {
-            "person": {
+            "actor": {
               "reference": "Practitioner/56"
             }
           }
@@ -2702,13 +1987,6 @@
             "reference": "Device/58"
           }
         ],
-        "relatedItem": [
-          {
-            "target": {
-              "reference": "Observation/59"
-            }
-          }
-        ],
         "location": {
           "reference": "Location/62"
         }
@@ -2716,8 +1994,7 @@
       "request": {
         "method": "POST",
         "url": "Procedure"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -2745,9 +2022,6 @@
             "value": "555-555-5000"
           }
         ],
-        "managingOrganization": {
-          "reference": "Organization/57"
-        },
         "practitionerRole": [
           {
             "managingOrganization": {
@@ -2759,8 +2033,7 @@
       "request": {
         "method": "POST",
         "url": "Practitioner"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -2788,8 +2061,7 @@
       "request": {
         "method": "POST",
         "url": "Organization"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -2816,8 +2088,7 @@
       "request": {
         "method": "POST",
         "url": "Device"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -2841,9 +2112,9 @@
           ]
         },
         "status": "aborted",
-        "appliesDateTime": "2011-02-03",
+        "effectiveDateTime": "2011-02-03",
         "valueString": "US",
-        "bodySiteCodeableConcept": {
+        "bodySite": {
           "coding": [
             {
               "system": "http://snomed.info/sct",
@@ -2861,8 +2132,7 @@
       "request": {
         "method": "POST",
         "url": "Observation"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -2890,9 +2160,6 @@
             "value": "(555)555-555-1234"
           }
         ],
-        "managingOrganization": {
-          "reference": "Organization/61"
-        },
         "practitionerRole": [
           {
             "managingOrganization": {
@@ -2904,8 +2171,7 @@
       "request": {
         "method": "POST",
         "url": "Practitioner"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -2916,8 +2182,7 @@
       "request": {
         "method": "POST",
         "url": "Organization"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -2946,8 +2211,7 @@
       "request": {
         "method": "POST",
         "url": "Location"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -2971,10 +2235,11 @@
           ]
         },
         "status": "completed",
-        "appliesDateTime": "2000-03-23T14:30:00",
+        "effectiveDateTime": "2000-03-23T14:30:00",
         "valueQuantity": {
           "value": "13.2",
-          "units": "g/dl"
+          "system": "http://unitofmeasure.org",
+ 		  "code": "g/dl"
         },
         "interpretation": {
           "coding": [
@@ -2991,8 +2256,7 @@
       "request": {
         "method": "POST",
         "url": "Observation"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -3016,10 +2280,11 @@
           ]
         },
         "status": "completed",
-        "appliesDateTime": "2000-03-23T14:30:00",
+        "effectiveDateTime": "2000-03-23T14:30:00",
         "valueQuantity": {
           "value": "6.7",
-          "units": "10+3/ul"
+          "system": "http://unitofmeasure.org",
+ 		  "code": "10+3/ul"
         },
         "interpretation": {
           "coding": [
@@ -3032,19 +2297,20 @@
         "referenceRange": {
           "low": {
             "value": "4.3",
-            "units": "10+3/ul"
+            "system": "http://unitofmeasure.org",
+ 			"code": "10+3/ul"
           },
           "high": {
             "value": "10.8",
-            "units": "10+3/ul"
+            "system": "http://unitofmeasure.org",
+ 			"code": "10+3/ul"
           }
         }
       },
       "request": {
         "method": "POST",
         "url": "Observation"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -3068,10 +2334,11 @@
           ]
         },
         "status": "completed",
-        "appliesDateTime": "2000-03-23T14:30:00",
+        "effectiveDateTime": "2000-03-23T14:30:00",
         "valueQuantity": {
           "value": "123",
-          "units": "10+3/ul"
+          "system": "http://unitofmeasure.org",
+ 		  "code": "10+3/ul"
         },
         "interpretation": {
           "coding": [
@@ -3084,19 +2351,20 @@
         "referenceRange": {
           "low": {
             "value": "150",
-            "units": "10+3/ul"
+            "system": "http://unitofmeasure.org",
+ 			"code": "10+3/ul"
           },
           "high": {
             "value": "350",
-            "units": "10+3/ul"
+            "system": "http://unitofmeasure.org",
+ 			"code": "10+3/ul"
           }
         }
       },
       "request": {
         "method": "POST",
         "url": "Observation"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -3119,7 +2387,7 @@
           ]
         },
         "status": "completed",
-        "appliesPeriod": {
+        "effectivePeriod": {
           "start": "2005-05-01",
           "end": "2009-02-27T13:00:00"
         },
@@ -3136,8 +2404,7 @@
       "request": {
         "method": "POST",
         "url": "Observation"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -3161,7 +2428,7 @@
           ]
         },
         "status": "completed",
-        "appliesPeriod": {
+        "effectivePeriod": {
           "start": "2005-05-01",
           "end": "2009-02-27T13:00:00"
         },
@@ -3170,8 +2437,7 @@
       "request": {
         "method": "POST",
         "url": "Observation"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -3195,7 +2461,7 @@
           ]
         },
         "status": "completed",
-        "appliesPeriod": {
+        "effectivePeriod": {
           "start": "2009-02-27T13:00:00"
         },
         "valueString": "None"
@@ -3203,8 +2469,7 @@
       "request": {
         "method": "POST",
         "url": "Observation"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -3228,7 +2493,7 @@
           ]
         },
         "status": "completed",
-        "appliesPeriod": {
+        "effectivePeriod": {
           "start": "2005-05-01"
         },
         "valueString": "None"
@@ -3236,8 +2501,7 @@
       "request": {
         "method": "POST",
         "url": "Observation"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -3261,10 +2525,11 @@
           ]
         },
         "status": "completed",
-        "appliesDateTime": "1999-11-14",
+        "effectiveDateTime": "1999-11-14",
         "valueQuantity": {
           "value": "177",
-          "units": "cm"
+          "system": "http://unitofmeasure.org",
+ 		  "code": "cm"
         },
         "interpretation": {
           "coding": [
@@ -3278,8 +2543,7 @@
       "request": {
         "method": "POST",
         "url": "Observation"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -3303,10 +2567,11 @@
           ]
         },
         "status": "completed",
-        "appliesDateTime": "1999-11-14",
+        "effectiveDateTime": "1999-11-14",
         "valueQuantity": {
           "value": "86",
-          "units": "kg"
+          "system": "http://unitofmeasure.org",
+ 		  "code": "kg"
         },
         "interpretation": {
           "coding": [
@@ -3320,8 +2585,7 @@
       "request": {
         "method": "POST",
         "url": "Observation"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -3345,10 +2609,11 @@
           ]
         },
         "status": "completed",
-        "appliesDateTime": "1999-11-14",
+        "effectiveDateTime": "1999-11-14",
         "valueQuantity": {
           "value": "132",
-          "units": "mm[Hg]"
+          "system": "http://unitofmeasure.org",
+ 		  "code": "mm[Hg]"
         },
         "interpretation": {
           "coding": [
@@ -3362,8 +2627,7 @@
       "request": {
         "method": "POST",
         "url": "Observation"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -3387,10 +2651,11 @@
           ]
         },
         "status": "completed",
-        "appliesDateTime": "1999-11-14",
+        "effectiveDateTime": "1999-11-14",
         "valueQuantity": {
           "value": "80",
-          "units": "mm[Hg]"
+          "system": "http://unitofmeasure.org",
+ 		"code": "mm[Hg]"
         },
         "interpretation": {
           "coding": [
@@ -3404,8 +2669,7 @@
       "request": {
         "method": "POST",
         "url": "Observation"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -3429,10 +2693,11 @@
           ]
         },
         "status": "completed",
-        "appliesDateTime": "2000-04-07",
+        "effectiveDateTime": "2000-04-07",
         "valueQuantity": {
           "value": "177",
-          "units": "cm"
+          "system": "http://unitofmeasure.org",
+ "code": "cm"
         },
         "interpretation": {
           "coding": [
@@ -3446,8 +2711,7 @@
       "request": {
         "method": "POST",
         "url": "Observation"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -3471,10 +2735,11 @@
           ]
         },
         "status": "completed",
-        "appliesDateTime": "2000-04-07",
+        "effectiveDateTime": "2000-04-07",
         "valueQuantity": {
           "value": "90",
-          "units": "kg"
+          "system": "http://unitofmeasure.org",
+ "code": "kg"
         },
         "interpretation": {
           "coding": [
@@ -3488,8 +2753,7 @@
       "request": {
         "method": "POST",
         "url": "Observation"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -3513,10 +2777,11 @@
           ]
         },
         "status": "completed",
-        "appliesDateTime": "2000-04-07",
+        "effectiveDateTime": "2000-04-07",
         "valueQuantity": {
           "value": "145",
-          "units": "mm[Hg]"
+          "system": "http://unitofmeasure.org",
+ "code": "mm[Hg]"
         },
         "interpretation": {
           "coding": [
@@ -3530,8 +2795,7 @@
       "request": {
         "method": "POST",
         "url": "Observation"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     },
     {
       "resource": {
@@ -3555,10 +2819,11 @@
           ]
         },
         "status": "completed",
-        "appliesDateTime": "2000-04-07",
+        "effectiveDateTime": "2000-04-07",
         "valueQuantity": {
           "value": "88",
-          "units": "mm[Hg]"
+          "system": "http://unitofmeasure.org",
+ 		  "code": "mm[Hg]"
         },
         "interpretation": {
           "coding": [
@@ -3572,8 +2837,7 @@
       "request": {
         "method": "POST",
         "url": "Observation"
-      },
-      "base": "http://localhost:8080/fhir"
+      }
     }
   ],
   "id": "urn:hl7ii:2.16.840.1.113883.19.5.99999.1:TT988",
