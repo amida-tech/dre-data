@@ -1088,7 +1088,7 @@
           "reference": "Practitioner/27"
         },
         "explanation": {
-          "resonNotGiven": [
+          "reasonNotGiven": [
             {
               "coding": [
                 {
@@ -1798,7 +1798,7 @@
         "onsetQuantity": {
           "value": 57,
           "system": "http://unitofmeasure.org",
-          "code": "445518008"
+          "code": "year"
         }
       },
       "request": {
@@ -1887,7 +1887,7 @@
         "onsetQuantity": {
           "value": 57,
           "system": "http://unitofmeasure.org",
-          "code": "445518008"
+          "code": "year"
         }
       },
       "request": {
