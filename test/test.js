@@ -494,7 +494,7 @@ describe('fhir tests',function() {
 
 					
 					it('should consolidate duplicates', function(done){
-						client.merge('Organization', 1536, 2114, function(err, success){
+						client.replace('Organization', 1536, 2114, function(err, success){
 							
 							//look for element Immunization/2113/_history/2
 							
