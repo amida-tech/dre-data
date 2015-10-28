@@ -331,8 +331,6 @@ describe('fhir tests',function() {
 							var components = entry.match(/(.*)\/(.*)\/_history\/(.*)/);
 							assert.equal(components[1],'Patient');
 							baseMergePatientId = components[2];
-//							console.log (entry);
-//							console.log(baseMergePatientId);
 							done();
 						},
 						function(error) {
@@ -348,13 +346,12 @@ describe('fhir tests',function() {
 						client.reconcile(patient,baseMergePatientId,function(err, bundle) {
 							
 							assert.equal('update', bundle.changeType);
-//							console.log(JSON.stringify(bundle));
 							done();
 						});
 					});
 				});
 
-				describe.only('reconcilePatientRecord',function() {
+				describe('reconcilePatientRecord',function() {
 					var reconcilePatientId;
 					var reconcilePatientId2;
 					it('should insert a bundle for reconciliation', function(done){
@@ -477,6 +474,7 @@ describe('fhir tests',function() {
 						var source = fs.readFileSync('test/artifacts/deduplicationBundle.json','utf8');
 						var patient = JSON.parse(source);
 						client.transaction(patient,null,function(entry) {
+							
 							done();
 						});
 						
@@ -496,17 +494,15 @@ describe('fhir tests',function() {
 
 					
 					it('should consolidate duplicates', function(done){
-//						client.getRecord('Condition',372, function(err, success){
-//							console.log('got here '+JSON.stringify(success));
-//							done();
-//						}, true);
-						client.merge('Condition', 450, [372], function(err, success){
+						client.merge('Organization', 1536, 2114, function(err, success){
+							
+							//look for element Immunization/2113/_history/2
+							
 							done();
 						});
 						
 					});
-					
-/*						*/					
+									
 				});
 			});
 		});
