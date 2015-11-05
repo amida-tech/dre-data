@@ -494,13 +494,33 @@ describe('fhir tests',function() {
 
 					
 					it('should consolidate duplicates', function(done){
-						client.replace('Organization', 1536, 2114, function(err, success){
-							
-							//look for element Immunization/2113/_history/2
-							
+						this.timeout(4000);
+						setTimeout(
+						client.removeMatches('dupe', function(err, matchSet){
+							fs.writeFile('matchSet-42.json', JSON.stringify(matchSet, null, 2), function (err) {
+								  if (err) return console.log(err);
+							});	
 							done();
-						});
+						}),3000);
 						
+						
+					});
+					
+
+					it('should merge changes for resource', function(done){
+						this.timeout(2000);
+						//read file
+						var source = fs.readFileSync('test/artifacts/updatePostMatch.json','utf8');
+						client.merge(source, 3189, function(err, success){
+							//get the record and confirm it is changed
+							client.getRecord("Immunization", 3779, function(err, success){
+								assert.equal(1,success.entry.length, 1);
+								assert.equal(3779,success.entry[0].resource.id );
+								assert.equal(23, success.entry[0].resource.lotNumber);
+								done();
+							});
+							
+						});
 					});
 									
 				});
