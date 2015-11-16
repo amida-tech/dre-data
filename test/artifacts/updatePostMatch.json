@@ -1,0 +1,42 @@
+{
+      "resourceType": "Immunization",
+      "id": "3779",
+      "meta": {
+        "versionId": "1",
+        "lastUpdated": "2015-11-05T18:09:47.253+00:00"
+      },
+      "date": "1999-11",
+      "vaccineCode": {
+        "coding": [
+          {
+            "system": "http://www2a.cdc.gov/vaccines/iis/iisstandards/vaccines.asp?rpt=cvx",
+            "code": "88",
+            "display": "Influenza virus vaccine"
+          }
+        ]
+      },
+      "patient": {
+        "reference": "Patient/dupe"
+      },
+      "performer": {
+        "reference": "Practitioner/3781"
+      },
+      "manufacturer": {
+        "reference": "Organization/3780"
+      },
+      "lotNumber": "23",
+      "route": {
+        "coding": [
+          {
+            "system": "urn:oid:2.16.840.1.113883.3.26.1.1",
+            "code": "C28161",
+            "display": "Intramuscular injection"
+          }
+        ]
+      },
+      "doseQuantity": {
+        "value": 50,
+        "system": "http://unitofmeasure.org",
+        "code": "mcg"
+      }
+    }

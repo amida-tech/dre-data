@@ -3,8 +3,8 @@
   "entry": [
     {
       "resource": {
-        "resourceType": "MedicationPrescription",
-        "id": "MedicationPrescription/32",
+        "resourceType": "MedicationOrder",
+        "id": "MedicationOrder/32",
         "patient": {
           "reference": "Patient/dupe"
         },
@@ -35,9 +35,9 @@
           "reference": "Practitioner/453"
         }
       },
-      "transaction": {
+      "request": {
         "method": "POST",
-        "url": "MedicationPrescription"
+        "url": "MedicationOrder"
       },
       "base": "http://localhost:8080/fhir"
     },
@@ -93,7 +93,7 @@
           "reference": "Location/474"
         }
       },
-      "transaction": {
+      "request": {
         "method": "POST",
         "url": "Procedure"
       },

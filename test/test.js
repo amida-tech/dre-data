@@ -8,6 +8,7 @@ var basePatientId;
 var lev = require('../lib/levenshtien').getEditDistance;
 var dict = require('../lib/mergeDefinitions/definition');
 
+var client = factory.getClient('http://localhost:8080/fhir-test/baseDstu2',null);
 describe('fhir tests',function() {
 	
 			before('starting server', function() {
@@ -42,13 +43,12 @@ describe('fhir tests',function() {
 							var patient = JSON.parse(fs.readFileSync(
 								'test/artifacts/patient/patient0.json','utf8'));
 							// explicitly disabling provenance
-							var client = factory.getClient('http://localhost:8080/fhir-test/base',null);
 							client.create(patient,null,function(entry) {
 							// check for values? can't gaurantee id value
 							// since that is dependent on state of server.
 							assert.isNotNull(entry,'Returned null patient entry.');
-	
 							var components = entry.match(/(.*)\/(.*)\/_history\/(.*)/);
+
 							assert.equal(components[1],'Patient');
 							basePatientId = components[2];
 	
@@ -67,7 +67,6 @@ describe('fhir tests',function() {
 							var source = fs.readFileSync('test/artifacts/bundle0.json','utf8');
 							var bundle = JSON.parse(source);
 							// explicitly disabling provenance
-							var client = factory.getClient('http://localhost:8080/fhir-test/base',null);
 							client.transaction(bundle,source,function(entry) {
 							// check for values? can't guarantee id value
 							// since that is dependent on state of server.
@@ -83,9 +82,9 @@ describe('fhir tests',function() {
 
 				describe('Insert a record into database with provenance', function(done) {
 					it('should insert a record and create a provenance entry for the insert',function(done) {
+						console.log('FIXME!!!!!!!!!!!! the source attribute to the provenance is not updated')
 							var source = fs.readFileSync('test/artifacts/patient/patient1-1.json','utf8');
 							var patient = JSON.parse(source);
-							var client = factory.getClient('http://localhost:8080/fhir-test/base');
 							client.createWithProvenance(patient,source,
 								function(entry,response,responseCode) {
 									// check for values? can't guarantee id value since
@@ -105,7 +104,6 @@ describe('fhir tests',function() {
 							this.timeout(4000);
 							var source = fs.readFileSync('test/artifacts/bundle0.json','utf8');
 							var patient = JSON.parse(source);
-							var client = factory.getClient('http://localhost:8080/fhir-test/base');
 							client.transaction(patient,source,
 								function(entry,response,responseCode) {
 									// check for values? can't guarantee id value since
@@ -125,7 +123,6 @@ describe('fhir tests',function() {
 			describe('Query',function() {
 				describe('Get Patient record',function() {
 					it('should return a patient record',function(done) {
-							var client = factory.getClient('http://localhost:8080/fhir-test/base');
 							client.getPatientRecord(1,function(err,bundle) {
 								// do something with the bundle?
 								var count = (bundle.entry && bundle.entry.length) || 0;
@@ -137,7 +134,6 @@ describe('fhir tests',function() {
 							}, false);
 					});
 					it('should return with search by patientId',function(done) {
-						var client = factory.getClient('http://localhost:8080/fhir-test/base');
 						client.search('Patient',
 							{ identifier : { $exact : 'urn:oid:0.1.2.3.4.5.6.7|1098667'}},
 							function(err,bundle) {
@@ -150,7 +146,6 @@ describe('fhir tests',function() {
 
 				describe('Get Medication',function() {
 					it('should return a medication by code', function(done) {
-						var client = factory.getClient('http://localhost:8080/fhir-test/base');
 						client.search("Medication",
 							{code : {$exact : 'http://www.nlm.nih.gov/research/umls/rxnorm|219483'},_count : 1000},
 							function(err,bundle) {
@@ -161,7 +156,6 @@ describe('fhir tests',function() {
 
 					});
 					it('should return a medication by either of 2  codes', function(done) {
-						var client = factory.getClient('http://localhost:8080/fhir-test/base');
 
 						client.search("Medication",
 							{ 
@@ -189,7 +183,6 @@ describe('fhir tests',function() {
 				describe('Update a Patient record ', function() {
 					var source = fs.readFileSync('test/artifacts/patient/patient1-1.json','utf8');
 					var patient = JSON.parse(source);
-					var client = factory.getClient('http://localhost:8080/fhir-test/base');
 									
 					it('should create patient to be updated',function(done) {
 						// explicitly disabling provenance
@@ -312,7 +305,6 @@ describe('fhir tests',function() {
 					it('should return comparison', function(done){
 						var pres1 = JSON.parse(fs.readFileSync('test/artifacts/prescription/prescription1-1.json','utf8'));
 						var pres2 = JSON.parse(fs.readFileSync('test/artifacts/prescription/prescription1-2.json','utf8'));
-						var client = factory.getClient('http://localhost:8080/fhir-test/base',null);
 						
 						client.reconcile(pres1,1,function(err, bundle) {
 							
@@ -331,8 +323,6 @@ describe('fhir tests',function() {
 					
 					it('should insert a record into the database',function(done) {
 						var patient = JSON.parse(baseMergePatient);
-						// explicitly disabling provenance
-						var client = factory.getClient('http://localhost:8080/fhir-test/base',null);
 						client.create(patient,null,function(entry) {
 							// check for values? can't gaurantee id value
 							// since that is dependent on state of server.
@@ -341,8 +331,6 @@ describe('fhir tests',function() {
 							var components = entry.match(/(.*)\/(.*)\/_history\/(.*)/);
 							assert.equal(components[1],'Patient');
 							baseMergePatientId = components[2];
-//							console.log (entry);
-//							console.log(baseMergePatientId);
 							done();
 						},
 						function(error) {
@@ -353,13 +341,11 @@ describe('fhir tests',function() {
 					
 					
 					it('should return  a reconciliation set',function(done) {
-						var client = factory.getClient('http://localhost:8080/fhir-test/base',null);
 						var patient = JSON.parse(fs.readFileSync('test/artifacts/patient/patient0-2.json','utf8'));
 										
 						client.reconcile(patient,baseMergePatientId,function(err, bundle) {
 							
 							assert.equal('update', bundle.changeType);
-//							console.log(JSON.stringify(bundle));
 							done();
 						});
 					});
@@ -373,8 +359,6 @@ describe('fhir tests',function() {
 						this.timeout(4000);
 						var source = fs.readFileSync('test/artifacts/bundle0.json','utf8');
 						var bundle = JSON.parse(source);
-						// explicitly disabling provenance
-						var client = factory.getClient('http://localhost:8080/fhir-test/base',null);
 						client.transaction(bundle,source,function(entry) {
 							// check for values? can't guarantee id value
 							// since that is dependent on state of server.
@@ -399,12 +383,10 @@ describe('fhir tests',function() {
 						
 					});
 					//this is a repeat of the previous step, used so we can compare 2 patient records.
-					it('should insert a second bundle for reconciliation', function(done){
+/*		*/			it('should insert a second bundle for reconciliation', function(done){
 						this.timeout(4000);
 						var source = fs.readFileSync('test/artifacts/bundle0.json','utf8');
 						var bundle = JSON.parse(source);
-						// explicitly disabling provenance
-						var client = factory.getClient('http://localhost:8080/fhir-test/base',null);
 						client.transaction(bundle,source,function(entry) {
 							// check for values? can't guarantee id value
 							// since that is dependent on state of server.
@@ -431,7 +413,6 @@ describe('fhir tests',function() {
 					});
 					
 					it ('should compare 2 patients with matching records and consider all elements a match', function(done){
-						var client = factory.getClient('http://localhost:8080/fhir-test/base',null);
 						client.reconcilePatient(reconcilePatientId2,reconcilePatientId,function(err, bundle) {
 
 							//TODO: insert some validation
@@ -440,14 +421,42 @@ describe('fhir tests',function() {
 					});
 					
 					it('should return  a reconciliation set',function(done) {
-
-						var client = factory.getClient('http://localhost:8080/fhir-test/base',null);
 						var source = fs.readFileSync('test/artifacts/bundle0.json','utf8');
 						var bundle = JSON.parse(source);
 						
 						client.reconcilePatient(bundle,reconcilePatientId,function(err, bundle) {
+
+							fs.writeFile('reconcile-0.json', JSON.stringify(bundle, null, 2), function (err) {
+								  if (err) return console.log(err);
+							});
+							done();
+						});
+					});
+					
+					it('should create the patient to be deduplicated', function(done){
+						this.timeout(3000);
+						//create a record
+						var source = fs.readFileSync('test/artifacts/deduplicationBundle.json','utf8');
+						var patient = JSON.parse(source);
+						client.transaction(patient,null,function(entry) {
+							done();
+						});
+						
+					});
+					
+					it('should return  a reconciliation set from dedupe user',function(done) {
+						this.timeout(3000);
+						//create a record
+						var source = fs.readFileSync('test/artifacts/deduplicationBundle.json','utf8');
+						var patient = JSON.parse(source);
+						var bundle = JSON.parse(source);
+						
+						client.reconcilePatient(bundle,'dupe',function(err, bundle) {
 							//TODO: insert some validation
 //							console.log("response: "+JSON.stringify(bundle));
+							fs.writeFile('reconcile-dupe-0.json', JSON.stringify(bundle, null, 2), function (err) {
+								  if (err) return console.log(err);
+							});
 							// do something with the bundle?
 //							var count = (bundle.entry && bundle.entry.length) || 0;
 //							assert.equal(1, count);
@@ -456,63 +465,64 @@ describe('fhir tests',function() {
 //							assert.equal(patient.name[0].given[0],'Robert');
 							done();
 						});
+
+					});					
+					
+					it('should add duplicate elements to the patient', function(done){
+						this.timeout(3000);
+						//create a record
+						var source = fs.readFileSync('test/artifacts/deduplicationBundle.json','utf8');
+						var patient = JSON.parse(source);
+						client.transaction(patient,null,function(entry) {
+							
+							done();
+						});
+						
 					});
 					
 					it('should create a deduplication reconciliation set', function(done){
 						this.timeout(8000);
-						//create a record
-						var source = fs.readFileSync('test/artifacts/deduplicationBundle.json','utf8');
-						var patient = JSON.parse(source);
-						// explicitly disabling provenance
-						var client = factory.getClient('http://localhost:8080/fhir-test/base',null);
-						client.transaction(patient,null,function(entry) {
-								//now save the same record a second time
-								client.transaction(patient,null,function(entry) {
-									//get the id
-									//find the patientID among the responses.
-									var patRec = null;
-									for (var t =0; t < entry.length; t++){
-										var components = entry[t].match(/(.*)\/(.*)\/_history\/(.*)/);
-										if (components[1] == 'Patient'){
-											patRec = components[2];
-											break;
-										}	
-									}
-
-									client.deduplicate(patRec, function(errs, matchSet){
-										fs.writeFile('matchSet-0.json', JSON.stringify(matchSet, null, 2), function (err) {
-											  if (err) return console.log(err);
-										});
-										done();
-									});
-								}, 
-								function(error) {
-									assert.fail('success response','error','failed to create patient entry.');
-									done();
-								});
-								
-						},
-						function(error) {
-							assert.fail('success response','error','failed to create patient entry.');
+						client.deduplicate('dupe', function(errs, matchSet){
+							fs.writeFile('matchSet-0.json', JSON.stringify(matchSet, null, 2), function (err) {
+								  if (err) return console.log(err);
+							});
 							done();
 						});
+
 						
 					});
 
 					
 					it('should consolidate duplicates', function(done){
-						var client = factory.getClient('http://localhost:8080/fhir-test/base',null);
-//						client.getRecord('Condition',372, function(err, success){
-//							console.log('got here '+JSON.stringify(success));
-//							done();
-//						}, true);
-						client.merge('Condition', 450, [372], function(err, success){
+						this.timeout(4000);
+						setTimeout(
+						client.removeMatches('dupe', function(err, matchSet){
+							fs.writeFile('matchSet-42.json', JSON.stringify(matchSet, null, 2), function (err) {
+								  if (err) return console.log(err);
+							});	
 							done();
-						});
+						}),3000);
+						
 						
 					});
 					
-					
+
+					it('should merge changes for resource', function(done){
+						this.timeout(2000);
+						//read file
+						var source = fs.readFileSync('test/artifacts/updatePostMatch.json','utf8');
+						client.merge(source, 3189, function(err, success){
+							//get the record and confirm it is changed
+							client.getRecord("Immunization", 3779, function(err, success){
+								assert.equal(1,success.entry.length, 1);
+								assert.equal(3779,success.entry[0].resource.id );
+								assert.equal(23, success.entry[0].resource.lotNumber);
+								done();
+							});
+							
+						});
+					});
+									
 				});
 			});
 		});

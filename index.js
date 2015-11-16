@@ -1,4 +1,4 @@
-var factory = require('lib/client');
+var factory = require('./lib/client');
 
 /**
  * get a client object.  The reason I do it as a prototype is so that I can later surface authentication 
