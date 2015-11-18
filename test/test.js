@@ -25,18 +25,53 @@ describe('fhir tests',function() {
 
 		    });
 
-//			after('stopping server', function() {
-//				var isWin = /^win/.test(process.platform);
-//				if (!isWin){
-//					console.log('stopping server');
-//					spawn('test/fhirServer/start.sh',['stop']);    
-//					console.log('stopped');
-//				}else{
-//
-//					console.log('fhir server must be manually stopped on Windows systems.');
-//				}
-//		    });
+			after('stopping server', function() {
+				var isWin = /^win/.test(process.platform);
+				if (!isWin){
+					console.log('stopping server');
+					spawn('test/fhirServer/start.sh',['stop']);    
+					console.log('stopped');
+				}else{
+
+					console.log('fhir server must be manually stopped on Windows systems.');
+				}
+		    });
 			
+			describe('Matching',	function() {
+				it('should give a score of 100 when comparing the same record',function() {
+					var original = JSON.parse(fs.readFileSync(
+							'test/artifacts/matching/original.json','utf8'));
+					var score = factory.scoreRecord(original, original, {});
+					assert.equal(score.score,100);
+					console.log("::::::::::"+JSON.stringify(score));
+				});
+				it('should give a score of less than 100 but greater than 0  when comparing a match',function() {
+					var original = JSON.parse(fs.readFileSync(
+							'test/artifacts/matching/original.json','utf8'));
+					var match = JSON.parse(fs.readFileSync(
+							'test/artifacts/matching/match.json','utf8'));
+					var score = factory.scoreRecord(original, match, {});
+					assert.isBelow(score.score,100);
+					assert.isAbove(score.score, 0);
+					console.log("::::::::::"+JSON.stringify(score));
+				});
+				it('should give a score of 0 when comparing a record flagged as a mismatch',function() {
+					var original = JSON.parse(fs.readFileSync(
+							'test/artifacts/matching/original.json','utf8'));
+					var mismatch = JSON.parse(fs.readFileSync(
+							'test/artifacts/matching/notMatch.json','utf8'));
+					var score = factory.scoreRecord(original, mismatch, {});
+					assert.equal(score.score, 0);				
+				});
+				it('should give a score of 0 when comparing a mismatched record to a original',function() {
+					var original = JSON.parse(fs.readFileSync(
+							'test/artifacts/matching/original.json','utf8'));
+					var mismatch = JSON.parse(fs.readFileSync(
+							'test/artifacts/matching/notMatch.json','utf8'));
+					var score = factory.scoreRecord(mismatch, original, {});
+					assert.equal(score.score, 0);	
+				});
+			});
 			describe('Insert',	function() {
 				describe( 'Insert a patient record',function() {
 						it('should insert a record into the database',function(done) {
