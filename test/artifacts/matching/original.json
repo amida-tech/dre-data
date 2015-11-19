@@ -6,27 +6,51 @@
         "lastUpdated":"2015-08-05T12:55:31.306+00:00"
     },
     "extension":[
-        {
-            "url":"http://amida-tech.com/fhir/extensions/mismatch",
-            "mismatches":["123","134"]
-        },
-        {
-            "url":"http://amida-tech.com/fhir/extensions/source",
-            "source":[
-                { 
-                    "id": "DocumentReference/2177",
-                    "description":"Original source uploaded on 11/2/2015"
-                },
-                { 
-                    "id": "DocumentReference/3284",
-                    "description":"Merged on on 11/12/2015"
-                },
-                { 
-                    "description":"Manually edited by user mhiner on 11/13/2015"
-                }
-            ]
-        }
-    ],
+            {
+                "url":"http://amida-tech.com/fhir/extensions/mismatch",
+                "valueString":"123"
+            },
+            {
+                "url":"http://amida-tech.com/fhir/extensions/mismatch",
+                "valueString":"134"
+            },
+            {
+                "url":"http://amida-tech.com/fhir/extensions/source",
+                "extension":[
+                    {
+                        "url":"http://amida-tech.com/fhir/extensions/source/reference",
+                        "valueString":"DocumentReference/2177"
+                    },
+                    {
+                        "url":"http://amida-tech.com/fhir/extensions/source/date",
+                        "valueDate":"2015-11-02"
+                    },
+                    {
+                        "url":"http://amida-tech.com/fhir/extensions/source/description",
+                        "valueString":"Original source"
+                    }
+                    
+                ]
+            },
+            {
+                "url":"http://amida-tech.com/fhir/extensions/source",
+                "extension":[
+                    {
+                        "url":"http://amida-tech.com/fhir/extensions/source/reference",
+                        "valueString":"DocumentReference/3284"
+                    },
+                    {
+                        "url":"http://amida-tech.com/fhir/extensions/source/date",
+                        "valueDate":"2015-11-12"
+                    },
+                    {
+                        "url":"http://amida-tech.com/fhir/extensions/source/description",
+                        "valueString":"Merged on 11/12/2015"
+                    }
+                    
+                ]
+            }
+        ],
     "text":{
         "status":"generated",
         "div":"<div><div class=\"hapiHeaderText\"> Robert P. <b>HILL </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>1098667</td></tr><tr><td>Address</td><td><span>43 Park St </span><br /><span>Bixby </span><span>OK </span><span>USA </span></td></tr><tr><td>Date of birth</td><td><span>27 October 1953</span></td></tr></tbody></table></div>"

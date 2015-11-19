@@ -43,7 +43,6 @@ describe('fhir tests',function() {
 							'test/artifacts/matching/original.json','utf8'));
 					var score = factory.scoreRecord(original, original, {});
 					assert.equal(score.score,100);
-					console.log("::::::::::"+JSON.stringify(score));
 				});
 				it('should give a score of less than 100 but greater than 0  when comparing a match',function() {
 					var original = JSON.parse(fs.readFileSync(
@@ -53,7 +52,6 @@ describe('fhir tests',function() {
 					var score = factory.scoreRecord(original, match, {});
 					assert.isBelow(score.score,100);
 					assert.isAbove(score.score, 0);
-					console.log("::::::::::"+JSON.stringify(score));
 				});
 				it('should give a score of 0 when comparing a record flagged as a mismatch',function() {
 					var original = JSON.parse(fs.readFileSync(
