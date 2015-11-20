@@ -1,0 +1,69 @@
+[
+  {
+    "url": "http://amida-tech.com/fhir/extensions/mismatch",
+    "valueString": "112"
+  },
+  {
+    "url": "http://amida-tech.com/fhir/extensions/mismatch",
+    "valueString": "123"
+  },
+  {
+    "url": "http://amida-tech.com/fhir/extensions/mismatch",
+    "valueString": "134"
+  },
+  {
+    "url": "http://amida-tech.com/fhir/extensions/mismatch",
+    "valueString": "184"
+  },
+  {
+    "url": "http://amida-tech.com/fhir/extensions/source",
+    "extension": [
+      {
+        "url": "http://amida-tech.com/fhir/extensions/source/reference",
+        "valueString": "DocumentReference/3592"
+      },
+      {
+        "url": "http://amida-tech.com/fhir/extensions/source/date",
+        "valueDate": "2014-01-02"
+      },
+      {
+        "url": "http://amida-tech.com/fhir/extensions/source/description",
+        "valueString": "Original source"
+      }
+    ]
+  },
+  {
+    "url": "http://amida-tech.com/fhir/extensions/source",
+    "extension": [
+      {
+        "url": "http://amida-tech.com/fhir/extensions/source/reference",
+        "valueString": "DocumentReference/2177"
+      },
+      {
+        "url": "http://amida-tech.com/fhir/extensions/source/date",
+        "valueDate": "2015-11-02"
+      },
+      {
+        "url": "http://amida-tech.com/fhir/extensions/source/description",
+        "valueString": "Original source"
+      }
+    ]
+  },
+  {
+    "url": "http://amida-tech.com/fhir/extensions/source",
+    "extension": [
+      {
+        "url": "http://amida-tech.com/fhir/extensions/source/reference",
+        "valueString": "DocumentReference/3284"
+      },
+      {
+        "url": "http://amida-tech.com/fhir/extensions/source/date",
+        "valueDate": "2015-11-12"
+      },
+      {
+        "url": "http://amida-tech.com/fhir/extensions/source/description",
+        "valueString": "Merged on 11/12/2015"
+      }
+    ]
+  }
+]

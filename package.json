@@ -17,7 +17,8 @@
   "devDependencies": {
     "mocha": "~2.2.5",
     "mocha-lcov-reporter": "~0.0.2",
-    "coveralls": "~2.11.4"
+    "coveralls": "~2.11.4",
+    "rewire": "~2.5.0"
     
   },
   "scripts": {

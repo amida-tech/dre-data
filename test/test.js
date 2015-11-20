@@ -1,14 +1,19 @@
 var assert = require("chai").assert;
 var expect = require("chai").expect;
+var rewire = require("rewire");
 var fs = require('fs');
 var diff = require('deep-diff').diff;
 var factory = require('../lib/client');
+var clientLib = rewire('../lib/client');
+var mergeExtensions = clientLib.__get__('mergeExtensions');
+var scoreRecord = clientLib.__get__('scoreRecord');
 var spawn = require('child_process').spawnSync;
 var basePatientId;
 var lev = require('../lib/levenshtien').getEditDistance;
 var dict = require('../lib/mergeDefinitions/definition');
-
 var client = factory.getClient('http://localhost:8080/fhir-test/baseDstu2',null);
+
+
 describe('fhir tests',function() {
 	
 			before('starting server', function() {
@@ -37,11 +42,11 @@ describe('fhir tests',function() {
 				}
 		    });
 			
-			describe('Matching',	function() {
+			describe('Matching', function() {
 				it('should give a score of 100 when comparing the same record',function() {
 					var original = JSON.parse(fs.readFileSync(
 							'test/artifacts/matching/original.json','utf8'));
-					var score = factory.scoreRecord(original, original, {});
+					var score = scoreRecord(original, original, {});
 					assert.equal(score.score,100);
 				});
 				it('should give a score of less than 100 but greater than 0  when comparing a match',function() {
@@ -49,7 +54,7 @@ describe('fhir tests',function() {
 							'test/artifacts/matching/original.json','utf8'));
 					var match = JSON.parse(fs.readFileSync(
 							'test/artifacts/matching/match.json','utf8'));
-					var score = factory.scoreRecord(original, match, {});
+					var score = scoreRecord(original, match, {});
 					assert.isBelow(score.score,100);
 					assert.isAbove(score.score, 0);
 				});
@@ -58,7 +63,7 @@ describe('fhir tests',function() {
 							'test/artifacts/matching/original.json','utf8'));
 					var mismatch = JSON.parse(fs.readFileSync(
 							'test/artifacts/matching/notMatch.json','utf8'));
-					var score = factory.scoreRecord(original, mismatch, {});
+					var score = scoreRecord(original, mismatch, {});
 					assert.equal(score.score, 0);				
 				});
 				it('should give a score of 0 when comparing a mismatched record to a original',function() {
@@ -66,7 +71,7 @@ describe('fhir tests',function() {
 							'test/artifacts/matching/original.json','utf8'));
 					var mismatch = JSON.parse(fs.readFileSync(
 							'test/artifacts/matching/notMatch.json','utf8'));
-					var score = factory.scoreRecord(mismatch, original, {});
+					var score = scoreRecord(mismatch, original, {});
 					assert.equal(score.score, 0);	
 				});
 			});
@@ -115,7 +120,7 @@ describe('fhir tests',function() {
 
 				describe('Insert a record into database with provenance', function(done) {
 					it('should insert a record and create a provenance entry for the insert',function(done) {
-						console.log('FIXME!!!!!!!!!!!! the source attribute to the provenance is not updated')
+//						console.log('FIXME!!!!!!!!!!!! the source attribute to the provenance is not updated')
 							var source = fs.readFileSync('test/artifacts/patient/patient1-1.json','utf8');
 							var patient = JSON.parse(source);
 							client.createWithProvenance(patient,source,
@@ -153,6 +158,55 @@ describe('fhir tests',function() {
 						// end insert
 			});
 
+			describe('ExtensionHandling', function(){
+				it('should not alter the primary record when neither has extensions', function(){
+					var primary = JSON.parse(fs.readFileSync('test/artifacts/extensionHandling/noExtensions.json','utf8'));
+					var secondary = JSON.parse(fs.readFileSync('test/artifacts/extensionHandling/noExtensions.json','utf8'));
+					
+					mergeExtensions(primary, secondary);
+					assert.isUndefined(primary.extension);
+					
+				});
+				
+				it('should not alter the primary record when the secondary has no extensions', function(){
+					var primary = JSON.parse(fs.readFileSync('test/artifacts/extensionHandling/primary.json','utf8'));
+					var secondary = JSON.parse(fs.readFileSync('test/artifacts/extensionHandling/noExtensions.json','utf8'));
+					
+					var ext = primary.extension;
+					mergeExtensions(primary, secondary);
+					assert.deepEqual(ext, primary.extension);
+				});
+				
+				it('should alter the primary record when the secondary has extensions but primary does not', function(){
+					var primary = JSON.parse(fs.readFileSync('test/artifacts/extensionHandling/noExtensions.json','utf8'));
+					var secondary = JSON.parse(fs.readFileSync('test/artifacts/extensionHandling/primary.json','utf8'));
+					
+					var ext = secondary.extension;
+					mergeExtensions(primary, secondary);
+					assert.deepEqual(ext, primary.extension);
+				});
+				
+				it('should merge extensions with no duplicates where both records have same extensions', function(){
+					var primary = JSON.parse(fs.readFileSync('test/artifacts/extensionHandling/primary.json','utf8'));
+					var secondary = JSON.parse(fs.readFileSync('test/artifacts/extensionHandling/primary.json','utf8'));
+					
+					var ext = secondary.extension;
+					mergeExtensions(primary, secondary);
+					assert.deepEqual(ext, primary.extension);
+				});
+				
+				it('should merge extensions where both records have extensions', function(){
+					var primary = JSON.parse(fs.readFileSync('test/artifacts/extensionHandling/primary.json','utf8'));
+					var secondary = JSON.parse(fs.readFileSync('test/artifacts/extensionHandling/someMatchingExtensions.json','utf8'));
+					var result = JSON.parse(fs.readFileSync('test/artifacts/extensionHandling/combinedExtensionResult.json','utf8'));
+					
+					mergeExtensions(primary, secondary);
+					assert.deepEqual(result, primary.extension);
+				});
+			});
+			
+			
+			
 			describe('Query',function() {
 				describe('Get Patient record',function() {
 					it('should return a patient record',function(done) {
