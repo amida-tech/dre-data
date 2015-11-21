@@ -1,6 +1,6 @@
 {
   "name": "dre-data",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "description": "Fhir merge functions",
   "main": "index.js",
   "directories": {
