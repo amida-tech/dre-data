@@ -74,6 +74,15 @@ describe('fhir tests',function() {
 					var score = scoreRecord(mismatch, original, {});
 					assert.equal(score.score, 0);	
 				});
+				it('should ignore extensions when doing a comparison',function() {
+					var original = JSON.parse(fs.readFileSync(
+							'test/artifacts/matching/original.json','utf8'));
+					var second = JSON.parse(fs.readFileSync(
+							'test/artifacts/matching/extensionOnlyDifference.json','utf8'));
+					var score = scoreRecord(second, original, {});
+					assert.equal(score.score, 100);	
+				});
+				
 			});
 			describe('Insert',	function() {
 				describe( 'Insert a patient record',function() {
