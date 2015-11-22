@@ -1,6 +1,6 @@
 {
       "resourceType": "Immunization",
-      "id": "3779",
+      "id": "3332",
       "meta": {
         "versionId": "1",
         "lastUpdated": "2015-11-05T18:09:47.253+00:00"
@@ -19,10 +19,10 @@
         "reference": "Patient/dupe"
       },
       "performer": {
-        "reference": "Practitioner/3781"
+        "reference": "Practitioner/3334"
       },
       "manufacturer": {
-        "reference": "Organization/3780"
+        "reference": "Organization/3333"
       },
       "lotNumber": "23",
       "route": {

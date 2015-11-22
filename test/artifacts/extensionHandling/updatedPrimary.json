@@ -1,6 +1,6 @@
 {
     "resourceType":"Patient",
-    "id":"primary",
+    "id":"XXXX",
     "meta":{
         "versionId":"2",
         "lastUpdated":"2015-08-05T12:55:31.306+00:00"
@@ -77,7 +77,7 @@
     "telecom":[
         {
             "system":"email",
-            "value":"robert.hill@example.com"
+            "value":"robert.update.hill@example.com"
         }
     ],
     "birthDate":"1953-10-27",

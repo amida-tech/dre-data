@@ -7,6 +7,7 @@ var factory = require('../lib/client');
 var clientLib = rewire('../lib/client');
 var mergeExtensions = clientLib.__get__('mergeExtensions');
 var scoreRecord = clientLib.__get__('scoreRecord');
+var trans = require('../lib/transaction');
 var spawn = require('child_process').spawnSync;
 var basePatientId;
 var lev = require('../lib/levenshtien').getEditDistance;
@@ -30,17 +31,17 @@ describe('fhir tests',function() {
 
 		    });
 
-			after('stopping server', function() {
-				var isWin = /^win/.test(process.platform);
-				if (!isWin){
-					console.log('stopping server');
-					spawn('test/fhirServer/start.sh',['stop']);    
-					console.log('stopped');
-				}else{
-
-					console.log('fhir server must be manually stopped on Windows systems.');
-				}
-		    });
+//			after('stopping server', function() {
+//				var isWin = /^win/.test(process.platform);
+//				if (!isWin){
+//					console.log('stopping server');
+//					spawn('test/fhirServer/start.sh',['stop']);    
+//					console.log('stopped');
+//				}else{
+//
+//					console.log('fhir server must be manually stopped on Windows systems.');
+//				}
+//		    });
 			
 			describe('Matching', function() {
 				it('should give a score of 100 when comparing the same record',function() {
@@ -336,6 +337,64 @@ describe('fhir tests',function() {
 							done();
 						});
 					});
+					
+					it('should merge extensions when doing a replace', function(done){
+						
+						var t = trans.createTransaction(false);
+						var primary = JSON.parse(fs.readFileSync('test/artifacts/extensionHandling/primary.json','utf8'));
+						var secondary = JSON.parse(fs.readFileSync('test/artifacts/extensionHandling/someMatchingExtensions.json','utf8'));
+						var result = JSON.parse(fs.readFileSync('test/artifacts/extensionHandling/combinedExtensionResult.json','utf8'));
+						
+						
+						t.addEntry(primary, 'POST');
+						t.addEntry(secondary, 'POST');
+						client.transaction(t,null, function(entry, response){
+							var recordType = "Patient";
+							var ids = [];
+							for(var j =0; j < entry.length; j++){
+					    		var components = entry[j].match(/(.*)\/(.*)\/_history\/(.*)/);
+				
+					    		ids.push(components[2]);
+							}
+							client.replace(recordType, ids[0], ids[1], function(err, success){
+								assert.deepEqual(result,success.entry[0].resource.extension );
+								done();	
+							});
+							
+						});
+				
+					});
+					
+					it('should merge extensions when doing a merge', function(done){
+						var t = trans.createTransaction(false);
+						var primary = JSON.parse(fs.readFileSync('test/artifacts/extensionHandling/primary.json','utf8'));
+						var secondary = JSON.parse(fs.readFileSync('test/artifacts/extensionHandling/someMatchingExtensions.json','utf8'));
+						var updatedPrimaryString = fs.readFileSync('test/artifacts/extensionHandling/updatedPrimary.json','utf8')
+						var result = JSON.parse(fs.readFileSync('test/artifacts/extensionHandling/combinedExtensionResult.json','utf8'));
+						
+						
+						t.addEntry(primary, 'POST');
+						t.addEntry(secondary, 'POST');
+						client.transaction(t,null, function(entry, response){
+							var recordType = "Patient";
+							var ids = [];
+							for(var j =0; j < entry.length; j++){
+					    		var components = entry[j].match(/(.*)\/(.*)\/_history\/(.*)/);
+				
+					    		ids.push(components[2]);
+							}
+							updatedPrimaryString = updatedPrimaryString.replace('XXXX', ids[0]);
+							client.merge(updatedPrimaryString, ids[1], function(err, success){
+								client.getRecord("Patient", ids[0], function(getErr,getSuccess){
+
+									assert.deepEqual(result,getSuccess.entry[0].resource.extension );
+									done();
+								}, false, false); 
+									
+							});
+							
+						});
+					});
 				});
 			});
 
@@ -604,14 +663,17 @@ describe('fhir tests',function() {
 					
 
 					it('should merge changes for resource', function(done){
+						//NOTE: This test is fragile and dependent on the state of the DB
+						// at the time it is run.  It should be considered for rewrite to not 
+						// make any assumptions.
 						this.timeout(2000);
 						//read file
 						var source = fs.readFileSync('test/artifacts/updatePostMatch.json','utf8');
-						client.merge(source, 3189, function(err, success){
+						client.merge(source, 3336, function(err, success){
 							//get the record and confirm it is changed
-							client.getRecord("Immunization", 3779, function(err, success){
+							client.getRecord("Immunization", 3332, function(err, success){
 								assert.equal(1,success.entry.length, 1);
-								assert.equal(3779,success.entry[0].resource.id );
+								assert.equal(3332,success.entry[0].resource.id );
 								assert.equal(23, success.entry[0].resource.lotNumber);
 								done();
 							});
