@@ -1,0 +1,79 @@
+
+{
+    "resourceType":"Immunization",
+    "id":"67483",
+    "meta":{
+        "versionId":"4",
+        "lastUpdated":"2015-11-30T14:36:49.588+00:00"
+    },
+    "extension":[
+        {
+            "url":"http://amida-tech.com/fhir/extensions/source",
+            "extension":[
+                {
+                    "url":"http://amida-tech.com/fhir/extensions/source/reference",
+                    "valueString":"DocumentReference/67460/_history/1"
+                },
+                {
+                    "url":"http://amida-tech.com/fhir/extensions/source/date",
+                    "valueDate":"2015-11-30"
+                },
+                {
+                    "url":"http://amida-tech.com/fhir/extensions/source/description",
+                    "valueString":"Original source"
+                }
+            ]
+        },
+        {
+            "url":"http://amida-tech.com/fhir/extensions/source",
+            "extension":[
+                {
+                    "url":"http://amida-tech.com/fhir/extensions/source/reference",
+                    "valueString":"DocumentReference/70254/_history/1"
+                },
+                {
+                    "url":"http://amida-tech.com/fhir/extensions/source/date",
+                    "valueDate":"2015-11-30"
+                },
+                {
+                    "url":"http://amida-tech.com/fhir/extensions/source/description",
+                    "valueString":"Original source"
+                }
+            ]
+        }
+    ],
+    "date":"1998-12-15",
+    "vaccineCode":{
+        "coding":[
+            {
+                "system":"http://www2a.cdc.gov/vaccines/iis/iisstandards/vaccines.asp?rpt=cvx",
+                "code":"88",
+                "display":"Influenza virus vaccine"
+            }
+        ]
+    },
+    "patient":{
+        "reference":"Patient/m"
+    },
+    "wasNotGiven":true,
+    "performer":{
+        "reference":"Practitioner/67481"
+    },
+    "manufacturer":{
+        "reference":"Organization/67480"
+    },
+    "lotNumber":"1",
+    "route":{
+        "coding":[
+            {
+                "system":"urn:oid:2.16.840.1.113883.3.26.1.1",
+                "code":"C28161",
+                "display":"Intramuscular injection"
+            }
+        ]
+    },
+    "doseQuantity":{
+        "value":50,
+        "unit":"mcg"
+    }
+}

@@ -1,0 +1,39 @@
+
+{
+    "resourceType":"Immunization",
+    "id":"85574",
+    "meta":{
+        "versionId":"1",
+        "lastUpdated":"2015-11-30T15:08:41.769+00:00"
+    },
+    "extension":[
+        {
+            "url":"http://amida-tech.com/fhir/extensions/source",
+            "extension":[
+                {
+                    "url":"http://amida-tech.com/fhir/extensions/source/reference",
+                    "valueString":"DocumentReference/85557/_history/1"
+                },
+                {
+                    "url":"http://amida-tech.com/fhir/extensions/source/date",
+                    "valueDate":"2015-11-30"
+                },
+                {
+                    "url":"http://amida-tech.com/fhir/extensions/source/description",
+                    "valueString":"Original source"
+                }
+            ]
+        }
+    ],
+    "date":"1999-11-01",
+    "vaccineCode":{
+        "text":"Influenza virus vaccine"
+    },
+    "patient":{
+        "reference":"Patient/m"
+    },
+    "reported":true,
+    "route":{
+        "text":"Intramuscular injection"
+    }
+}

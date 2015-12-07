@@ -59,6 +59,16 @@ describe('fhir tests',function() {
 					assert.isBelow(score.score,100);
 					assert.isAbove(score.score, 0);
 				});
+				it('immunization 1 should give a score of less than 100 but greater than 70  when comparing a match',function() {
+					var original = JSON.parse(fs.readFileSync(
+							'test/artifacts/matching/imm/85576p.json','utf8'));
+					var match = JSON.parse(fs.readFileSync(
+							'test/artifacts/matching/imm/67487p.json','utf8'));
+					var score = scoreRecord(original, match, {});
+					console.log(JSON.stringify(score, null, 2));
+					assert.isBelow(score.score,100);
+					assert.isAbove(score.score, 0);
+				});
 				it('should give a score of 0 when comparing a record flagged as a mismatch',function() {
 					var original = JSON.parse(fs.readFileSync(
 							'test/artifacts/matching/original.json','utf8'));
@@ -649,7 +659,7 @@ describe('fhir tests',function() {
 
 					
 					it('should consolidate duplicates', function(done){
-						this.timeout(4000);
+						this.timeout(5000);
 						setTimeout(
 						client.removeMatches('dupe', function(err, matchSet){
 							fs.writeFile('matchSet-42.json', JSON.stringify(matchSet, null, 2), function (err) {
